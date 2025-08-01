@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">G7_Trivia_Game</string>
+    <string name="welcome_user">Welcome User!</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="past_questions">Past Questions</string>
+    <string name="play_trivia">Play Trivia</string>
 </resources>

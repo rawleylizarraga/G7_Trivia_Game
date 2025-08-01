@@ -1,4 +1,4 @@
-package com.group7.g7_trivia_game.viewmodels;
+package com.group7.g7_trivia_game;
 
 import android.os.Bundle;
 
@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.group7.g7_trivia_game.R;
 
 public class QuestionAnsweringActivity extends AppCompatActivity {
 

@@ -22,6 +22,12 @@ public class User {
     private boolean isAdmin;
     private int score;
 
+    /**
+     * Initializes a new User object using given username and password.
+     * Default sets isAdmin to false and score to 0.
+     * @param username User's username as String
+     * @param password User's password as String
+     */
     public User(String username, String password) {
         this.username = username;
         this.password = password;

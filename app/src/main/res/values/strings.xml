@@ -4,4 +4,5 @@
     <string name="leaderboard">Leaderboard</string>
     <string name="past_questions">Past Questions</string>
     <string name="play_trivia">Play Trivia</string>
+    <string name="admin_menu">Admin Menu</string>
 </resources>

@@ -55,5 +55,17 @@
         app:layout_constraintTop_toBottomOf="@id/pastQuestionsButton" />
 
 
+    <Button
+        android:id="@+id/adminButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_menu"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/playTriviaButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

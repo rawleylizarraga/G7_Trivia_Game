@@ -2,6 +2,10 @@ package com.group7.g7_trivia_game.database;
 
 import android.app.Application;
 
+import com.group7.g7_trivia_game.database.entities.AnsweredQuestion;
+import com.group7.g7_trivia_game.database.entities.Question;
+import com.group7.g7_trivia_game.database.entities.User;
+
 /**
  * description
  *
@@ -18,5 +22,23 @@ public class TriviaRepository {
         mUserDao = db.userDao();
         mQuestionDao = db.questionDao();
         mAnsweredQuestionDao = db.answeredQuestionDao();
+    }
+
+    public void insertUser(User user) {
+        TriviaDatabase.databaseWriteExecutor.execute(() -> {
+            mUserDao.insert(user);
+        });
+    }
+
+    public void insertQuestion(Question question) {
+        TriviaDatabase.databaseWriteExecutor.execute(() -> {
+            mQuestionDao.insert(question);
+        });
+    }
+
+    public void insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
+        TriviaDatabase.databaseWriteExecutor.execute(() -> {
+            mUserDao.insert(answeredQuestion);
+        });
     }
 }

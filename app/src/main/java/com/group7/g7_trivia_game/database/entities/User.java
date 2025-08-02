@@ -5,6 +5,8 @@ import androidx.room.PrimaryKey;
 
 import com.group7.g7_trivia_game.database.TriviaDatabase;
 
+import java.util.Objects;
+
 /**
  * User object for storing in database.
  *
@@ -25,5 +27,57 @@ public class User {
         this.password = password;
         this.isAdmin = false;
         this.score = 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && isAdmin == user.isAdmin && score == user.score && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, isAdmin, score);
     }
 }

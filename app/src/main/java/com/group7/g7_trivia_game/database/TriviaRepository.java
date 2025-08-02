@@ -60,7 +60,7 @@ public class TriviaRepository {
      */
     public void insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
         TriviaDatabase.databaseWriteExecutor.execute(() -> {
-            mUserDao.insert(answeredQuestion);
+            mAnsweredQuestionDao.insert(answeredQuestion);
         });
     }
 

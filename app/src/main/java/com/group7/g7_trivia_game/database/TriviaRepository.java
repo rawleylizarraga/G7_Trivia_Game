@@ -27,7 +27,7 @@ public class TriviaRepository {
      * Initializes repository with database and DAOs.
      * @param application Application passed by ViewHolder.
      */
-    TriviaRepository(Application application){
+    public TriviaRepository(Application application){
         TriviaDatabase db =TriviaDatabase.getDatabase(application);
         mUserDao = db.userDao();
         mQuestionDao = db.questionDao();

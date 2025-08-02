@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">G7_Trivia_Game</string>
+    <string name="createAccount_create_account">Create Account</string>
+    <string name="createAccount_enter_username">Enter username</string>
+    <string name="createAccount_enter_password">Enter password</string>
+    <string name="createAccount_confirm_password">Confirm password</string>
+    <string name="createAccount_create_account_button">Create Account</string>
+    <string name="createAccount_back">Back</string>
 </resources>

@@ -9,7 +9,7 @@ import com.group7.g7_trivia_game.database.TriviaRepository;
 import com.group7.g7_trivia_game.database.entities.User;
 
 /**
- * description
+ * View model for the login activity to access the repository.
  *
  * @author Rawley Lizarraga
  * @since 8/2/2025

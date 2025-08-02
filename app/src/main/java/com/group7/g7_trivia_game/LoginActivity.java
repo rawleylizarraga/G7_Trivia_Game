@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.group7.g7_trivia_game.databinding.ActivityLoginBinding;
+import com.group7.g7_trivia_game.viewmodels.LoginActivityViewModel;
 
 /**
  * Activity to login the user.
@@ -17,10 +21,15 @@ import androidx.core.view.WindowInsetsCompat;
  * @since 8/2/2025
  */
 public class LoginActivity extends AppCompatActivity {
+    private ActivityLoginBinding binding;
+    private LoginActivityViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        loginViewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
     }
 }

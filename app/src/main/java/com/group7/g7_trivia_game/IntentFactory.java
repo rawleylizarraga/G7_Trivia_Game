@@ -1,10 +1,24 @@
 package com.group7.g7_trivia_game;
 
+import android.content.Context;
+import android.content.Intent;
+
 /**
- * description
+ * Intent Factory file
  *
  * @author
  * @since 7/31/2025
  */
 public class IntentFactory {
+
+    /**
+     * Creates an intent for LoginActivity.
+     * Takes no extras.
+     * @param context Application context
+     * @return Intent
+     */
+    static Intent loginActivityIntentFactory(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        return intent;
+    }
 }

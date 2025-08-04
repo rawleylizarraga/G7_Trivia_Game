@@ -26,4 +26,7 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
         binding.questionTextView.setText("");
 
     }
+
+
+
 }

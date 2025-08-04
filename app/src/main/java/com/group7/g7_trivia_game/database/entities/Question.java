@@ -26,20 +26,10 @@ public class Question {
     private String answerWrong2;
     private String answerWrong3;
     private String category;
+    public String question;
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Question question = (Question) o;
-        return questionId == question.questionId && points == question.points && Objects.equals(answerCorrect, question.answerCorrect) && Objects.equals(answerWrong1, question.answerWrong1) && Objects.equals(answerWrong2, question.answerWrong2) && Objects.equals(answerWrong3, question.answerWrong3) && Objects.equals(category, question.category);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(questionId, points, answerCorrect, answerWrong1, answerWrong2, answerWrong3, category);
-    }
-
-    @NonNull
+    //To String
     @Override
     public String toString() {
         return "Question{" +
@@ -50,7 +40,21 @@ public class Question {
                 ", answerWrong2='" + answerWrong2 + '\'' +
                 ", answerWrong3='" + answerWrong3 + '\'' +
                 ", category='" + category + '\'' +
+                ", question='" + question + '\'' +
                 '}';
+    }
+
+    //Equals and hashcode
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Question question1 = (Question) o;
+        return questionId == question1.questionId && points == question1.points && Objects.equals(answerCorrect, question1.answerCorrect) && Objects.equals(answerWrong1, question1.answerWrong1) && Objects.equals(answerWrong2, question1.answerWrong2) && Objects.equals(answerWrong3, question1.answerWrong3) && Objects.equals(category, question1.category) && Objects.equals(question, question1.question);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(questionId, points, answerCorrect, answerWrong1, answerWrong2, answerWrong3, category, question);
     }
 
     //Getters and Setters
@@ -108,5 +112,13 @@ public class Question {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 }

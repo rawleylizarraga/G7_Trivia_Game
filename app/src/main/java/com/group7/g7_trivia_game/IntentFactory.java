@@ -12,6 +12,17 @@ import android.content.Intent;
 public class IntentFactory {
 
     /**
+     * Creates new intent for the account creation activity.
+     * Takes no extras.
+     * @param context Application context
+     * @return createAccount intent
+     */
+    static Intent createAccountActivityIntentFactory(Context context) {
+        Intent intent = new Intent(context, CreateAccountActivity.class);
+        return intent;
+    }
+      
+    /**
      * Creates an intent for LoginActivity.
      * Takes no extras.
      * @param context Application context

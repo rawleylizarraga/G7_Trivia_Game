@@ -2,6 +2,8 @@ package com.group7.g7_trivia_game.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.group7.g7_trivia_game.database.entities.Question;
@@ -17,12 +19,8 @@ import java.util.List;
 @Dao
 public interface QuestionDao {
 
-    // Returns a random question from the entire table
-    @Query("SELECT * FROM " + TriviaDatabase.QUESTION_TABLE + " ORDER BY RANDOM() LIMIT 1")
-    LiveData<Question> getAnyRandomQuestion();
-
     // Inserts a new question into the database
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Question question);
 
     // Retrieves a list of all question IDs in the table

@@ -1,24 +1,143 @@
 package com.group7.g7_trivia_game;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import android.content.SharedPreferences;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.LiveData;
+
+import com.group7.g7_trivia_game.database.TriviaRepository;
+import com.group7.g7_trivia_game.database.entities.User;
+import com.group7.g7_trivia_game.viewmodels.MainActivityViewModel;
+
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String MAIN_ACTIVITY_USER_ID = "com.group7.g7_trivia_game.MAIN_ACTIVITY_USER_ID";
+    private static final String SAVED_INSTANCE_USERID_KEY = "com.group7.g7_trivia_game.SAVED_INSTANCE_USERID_KEY";
+    private static final int LOGGED_OUT = -1;
+
+    private int loggedInUserId = LOGGED_OUT;
+    private MainActivityViewModel viewModel;
+    private MainActivityBinding binding;
+
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+
+        loginUser(savedInstanceState); // Step 1: Find the logged-in user
+
+        // User is not logged in at this point, go to login screen
+        if (loggedInUserId == -1) {
+            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+            startActivity(intent);
+        }
+
+        setupButtons();
+
+    }
+
+
+    private void loginUser(Bundle savedInstanceState) {
+        //check shared preference for logged in user read from the file
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
+
+        if (loggedInUserId == LOGGED_OUT && savedInstanceState != null &&
+                savedInstanceState.containsKey(SAVED_INSTANCE_USERID_KEY)) {
+            loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_USERID_KEY, LOGGED_OUT);
+        }
+
+        if (loggedInUserId == LOGGED_OUT) {
+            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+        }
+
+        if (loggedInUserId == LOGGED_OUT) {
+            startActivity(IntentFactory.loginActivityIntentFactory(getApplicationContext()));
+            finish();
+            return;
+        }
+
+        viewModel.getUserByUserId(loggedInUserId).observe(this, user -> {
+            if (user != null) {
+                updateSharedPreference();
+                if (user.isAdmin()) {
+                    binding.titleWelcomeTextView.setText("Welcome Admin, " + user.getUsername() + "!");
+                    binding.adminButton.setVisibility(View.VISIBLE);
+                    binding.adminButton.setOnClickListener(v -> {
+                        startActivity(IntentFactory.adminMenuIntentFactory(getApplicationContext(), loggedInUserId));
+                    });
+                } else {
+                    binding.titleWelcomeTextView.setText("Welcome, " + user.getUsername() + "!");
+                    binding.adminButton.setVisibility(View.GONE);
+                }
+            } else {
+                Toast.makeText(this, "Failed to load user", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    /**
+     * Sets up the buttons in the main activity.
+     * This method initializes the click listeners for the buttons
+     * to navigate to different activities such as playing trivia,
+     * viewing past questions, and checking the leaderboard.
+     *
+     */
+    private void setupButtons() {
+        binding.playTriviaButton.setOnClickListener(v -> {
+            startActivity(IntentFactory.playTriviaIntentFactory(getApplicationContext(), loggedInUserId));
+        });
+
+        binding.pastQuestionsButton.setOnClickListener(v -> {
+            startActivity(IntentFactory.pastQuestionsIntentFactory(getApplicationContext(), loggedInUserId));
+        });
+
+        binding.leaderboardButton.setOnClickListener(v -> {
+            startActivity(IntentFactory.leaderboardIntentFactory(getApplicationContext(), loggedInUserId));
         });
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SAVED_INSTANCE_USERID_KEY, loggedInUserId);
+        updateSharedPreference();
+    }
+
+    private void updateSharedPreference() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
+        editor.apply();
+    }
+
+
+
 }

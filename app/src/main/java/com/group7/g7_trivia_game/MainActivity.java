@@ -110,15 +110,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupButtons() {
         binding.playTriviaButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.playTriviaIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.playTriviaActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.pastQuestionsButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.pastQuestionsIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.leaderboardButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.leaderboardIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.leaderboardActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
     }
 

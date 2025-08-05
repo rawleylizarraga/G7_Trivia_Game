@@ -42,6 +42,8 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         // Replace with actual score method
         int score = user.getScore(); // or user.getTotalPoints(), etc.
         holder.scoreTextView.setText(String.valueOf(score));
+        holder.rankTextView.setText("#" + (position + 1));
+
     }
 
     @Override
@@ -52,11 +54,13 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     static class LeaderboardViewHolder extends RecyclerView.ViewHolder {
         TextView usernameTextView;
         TextView scoreTextView;
+        TextView rankTextView;
 
         public LeaderboardViewHolder(@NonNull View itemView) {
             super(itemView);
             usernameTextView = itemView.findViewById(R.id.usernameTextView);
             scoreTextView = itemView.findViewById(R.id.scoreTextView);
+            rankTextView = itemView.findViewById(R.id.rankTextView); // initialize
         }
     }
 }

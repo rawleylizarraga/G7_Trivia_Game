@@ -23,7 +23,4 @@ public class LeaderboardViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<User>> getAllUsers() {
-        return repository.getAllUsers(); // method in the repo
-    }
 }

@@ -3,25 +3,12 @@ package com.group7.g7_trivia_game;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
 import android.content.SharedPreferences;
-import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.LiveData;
-
-import com.group7.g7_trivia_game.database.TriviaRepository;
-import com.group7.g7_trivia_game.database.entities.User;
 import com.group7.g7_trivia_game.viewmodels.MainActivityViewModel;
 
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -16,4 +16,6 @@
     <string name="login_enter_password">Enter password</string>
     <string name="login_login">Login</string>
     <string name="login_create_account">Create Account</string>
+    <string name="preference_userId_key" />
+    <string name="preference_file_key" />
 </resources>

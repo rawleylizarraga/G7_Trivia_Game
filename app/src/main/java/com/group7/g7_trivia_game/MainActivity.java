@@ -4,12 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.group7.g7_trivia_game.databinding.ActivityMainBinding;
 import com.group7.g7_trivia_game.viewmodels.MainActivityViewModel;
 
-
+/**
+ * Activity that serves as the main entry point for the trivia game application.
+ * It handles user login, displays a welcome message,
+ * and provides navigation to various game features such as playing trivia,
+ * viewing past questions, and checking the leaderboard.
+ * @author Madison Nolen
+ * @since 8/2/2025
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String MAIN_ACTIVITY_USER_ID = "com.group7.g7_trivia_game.MAIN_ACTIVITY_USER_ID";
@@ -18,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int loggedInUserId = LOGGED_OUT;
     private MainActivityViewModel viewModel;
-    private MainActivityBinding binding;
+    private ActivityMainBinding binding;
 
     /**
      *

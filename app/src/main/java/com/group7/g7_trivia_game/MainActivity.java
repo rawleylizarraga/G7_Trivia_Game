@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.titleWelcomeTextView.setText("Welcome Admin, " + user.getUsername() + "!");
                     binding.adminButton.setVisibility(View.VISIBLE);
                     binding.adminButton.setOnClickListener(v -> {
-                        startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
+                        startActivity(IntentFactory.adminActivityIntentFactory(getApplicationContext(), loggedInUserId));
                     });
                 } else {
                     binding.titleWelcomeTextView.setText("Welcome, " + user.getUsername() + "!");

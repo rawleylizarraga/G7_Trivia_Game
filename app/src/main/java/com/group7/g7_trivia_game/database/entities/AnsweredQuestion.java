@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * description
- *
+ * This class represents a question that has been answered by a user.
  * @author Madison Nolen
  * @since 8/5/2025
  */

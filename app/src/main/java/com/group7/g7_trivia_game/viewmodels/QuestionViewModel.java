@@ -16,25 +16,54 @@ import java.util.List;
 public class QuestionViewModel extends AndroidViewModel {
     private final TriviaRepository repository;
 
+    /**
+     * Constructor for QuestionViewModel.
+     * @param application Application context
+     */
     public QuestionViewModel(@NonNull Application application) {
         super(application);
         repository = new TriviaRepository(application);
     }
 
-    // Expose all question IDs from the DB
+    /**
+     * Gets a list of all question IDs.
+     * @return List of all question IDs
+     */
     public LiveData<List<Integer>> getAllQuestionIds() {
         return repository.getAllQuestionIds();
     }
 
-    // Expose all answered question IDs
+    /**
+     * Gets a list of all answered question IDs.
+     * @return List of all answered question IDs
+     */
     public LiveData<List<Integer>> getAllAnsweredQuestionIds() {
         return repository.getAllAnsweredQuestionIds();
     }
 
-    // Expose a random question from the DB
+    /**
+     * Gets a random question from the list of all questions.
+     * @param ids List of all question IDs
+     * @return Random question
+     */
     public LiveData<Question> getRandomQuestionFromIds(List<Integer> ids) {
         return repository.getRandomQuestionFromIds(ids);
     }
 
+    /**
+     * Inserts a new question into the database.
+     * @param question Question to be inserted
+     */
+    public void insertAnsweredQuestion(int questionId, int userId) {
+        //TODO: Implement this method
+    }
 
+    /**
+     * Updates the user's score.
+     * @param userId User ID
+     * @param points Points to be added
+     */
+    public void updateUserScore(int userId, int points) {
+        //TODO: Implement this method
+    }
 }

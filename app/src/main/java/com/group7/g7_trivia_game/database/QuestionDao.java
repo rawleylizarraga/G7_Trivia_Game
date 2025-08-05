@@ -11,23 +11,33 @@ import com.group7.g7_trivia_game.database.entities.Question;
 import java.util.List;
 
 /**
- * description
+ * Interface for the QuestionDao.
  *
- * @author
+ * @author Marco Lara
  * @since 7/31/2025
  */
 @Dao
 public interface QuestionDao {
 
-    // Inserts a new question into the database
+    /**
+     * Inserts a new question into the database.
+     * @param question Question to be inserted
+     */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Question question);
 
-    // Retrieves a list of all question IDs in the table
+    /**
+     * Gets a list of all question IDs.
+     * @return List of all question IDs
+     */
     @Query("SELECT questionId FROM " + TriviaDatabase.QUESTION_TABLE)
     LiveData<List<Integer>> getAllQuestionIds();
 
-    // Returns a random question from a specific list of question IDs
+    /**
+     * Gets a list of all answered question IDs.
+     * @param ids List of all question IDs
+     * @return List of all answered question IDs
+     */
     @Query("SELECT * FROM " + TriviaDatabase.QUESTION_TABLE + " WHERE questionId IN (:ids) ORDER BY RANDOM() LIMIT 1")
     LiveData<Question> getRandomQuestionFromIds(List<Integer> ids);
 

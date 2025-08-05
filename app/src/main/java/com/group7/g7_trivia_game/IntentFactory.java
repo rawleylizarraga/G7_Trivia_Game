@@ -32,4 +32,15 @@ public class IntentFactory {
         Intent intent = new Intent(context, LoginActivity.class);
         return intent;
     }
+
+    /**
+     * Creates an intent for the MainActivity.
+     * Takes no extras.
+     * @param context Application context
+     * @return Intent
+     */
+    static Intent mainActivityIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
 }

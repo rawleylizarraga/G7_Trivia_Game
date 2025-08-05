@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // User is not logged in at this point, go to login screen
         if (loggedInUserId == -1) {
-            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+            Intent intent = IntentFactory.loginActivityIntentFactory(getApplicationContext());
             startActivity(intent);
         }
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.titleWelcomeTextView.setText("Welcome Admin, " + user.getUsername() + "!");
                     binding.adminButton.setVisibility(View.VISIBLE);
                     binding.adminButton.setOnClickListener(v -> {
-                        startActivity(IntentFactory.adminMenuIntentFactory(getApplicationContext(), loggedInUserId));
+                        startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
                     });
                 } else {
                     binding.titleWelcomeTextView.setText("Welcome, " + user.getUsername() + "!");

@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.group7.g7_trivia_game.databinding.ActivityMainBinding;
 import com.group7.g7_trivia_game.viewmodels.MainActivityViewModel;
 
 /**
@@ -25,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int loggedInUserId = LOGGED_OUT;
     private MainActivityViewModel viewModel;
-    private MainActivityBinding binding;
+    private ActivityMainBinding binding;
 
     /**
      *

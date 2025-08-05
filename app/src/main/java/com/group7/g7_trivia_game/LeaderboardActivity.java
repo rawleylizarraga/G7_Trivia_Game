@@ -11,7 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.group7.g7_trivia_game.databinding.ActivityLeaderboardBinding;
+import com.group7.g7_trivia_game.viewmodels.LeaderboardAdapter;
 import com.group7.g7_trivia_game.viewmodels.LeaderboardViewModel;
+
+import java.util.ArrayList;
 
 /**
  * LeaderboardActivity class
@@ -31,17 +34,18 @@ public class LeaderboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLeaderboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         viewModel = new ViewModelProvider(this).get(LeaderboardViewModel.class);
 
         // Setup RecyclerView
-        adapter = new LeaderboardAdapter();
+        adapter = new LeaderboardAdapter(new ArrayList<>());
         binding.leaderboardRecyclerView.setAdapter(adapter);
         binding.leaderboardRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Observe the list of top users
-        viewModel.getTopUsers().observe(this, users -> {
-            adapter.submitList(users);
+        viewModel.getAllUsers().observe(this, users -> {
+            adapter.setUserList(users);
         });
+
         // Back button returns to MainActivity
         binding.backButton.setOnClickListener(v -> {
             finish(); // Ends this activity and returns to the previous

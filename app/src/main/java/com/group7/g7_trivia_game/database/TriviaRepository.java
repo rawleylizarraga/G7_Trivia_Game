@@ -35,6 +35,7 @@ public class TriviaRepository {
     }
 
 
+
     /**
      * Inserts a given {@code User} into the database by calling the DAO.
      * @param user {@code User} to add to the database.
@@ -114,17 +115,23 @@ public class TriviaRepository {
 
     //ADD ADDITIONAL METHODS AS NEEDED//
 
-    public static TriviaRepository getRepository(Application application) {
-        return new TriviaRepository(application);
-    }
-
 
     public LiveData<List<User>> getAllUsers() {
         return mUserDao.getAllUsers();
     }
 
+
     public LiveData<List<User>> getTopUsersByScore() {
         return mUserDao.getTopUsersByScore();
+    }
+
+
+    public LiveData<List<AnsweredQuestion>> getAnsweredQuestionsByUser(int userId) {
+        return mAnsweredQuestionDao.getAnsweredQuestionsByUser(userId);
+    }
+
+    public LiveData<List<AnsweredQuestion>> getAllAnsweredQuestions() {
+        return mAnsweredQuestionDao.getAllAnsweredQuestions();
     }
 
 }

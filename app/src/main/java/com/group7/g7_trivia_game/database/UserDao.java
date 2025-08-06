@@ -9,6 +9,8 @@ import androidx.room.Query;
 
 import com.group7.g7_trivia_game.database.entities.User;
 
+import java.util.List;
+
 /**
  * Data access object for User.
  * Referenced by the repository to allow accessing User objects.
@@ -32,4 +34,18 @@ public interface UserDao {
 
     @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+
+    /**
+     * METHODS ADDED BY MADISON FOR TRIVIA REPO
+     */
+    @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " ORDER BY score DESC")
+    LiveData<List<User>> getAllUsersByScoreDescending();
+
+
+    @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " ORDER BY score DESC LIMIT 10")
+    LiveData<List<User>> getTopUsersByScore();
+
+    @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " ORDER BY username")
+    LiveData<List<User>> getAllUsers();
 }

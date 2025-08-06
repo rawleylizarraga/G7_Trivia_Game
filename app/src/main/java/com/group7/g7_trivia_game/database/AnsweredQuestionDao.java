@@ -38,9 +38,11 @@ public interface AnsweredQuestionDao {
     @Query("SELECT * FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE)
     LiveData<List<AnsweredQuestion>> getAllAnsweredQuestions();
 
+    // Get a specific answered question by questionId and userId
     @Query("SELECT * FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE + " WHERE questionId = :questionId AND userId = :userId")
     LiveData<User> getAnsweredQuestion(int questionId, int userId);
 
+    // Get all answered questions by userId, ordered by dateAnswered
     @Query("SELECT * FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE + " WHERE userId = :userId ORDER BY dateAnswered DESC")
     LiveData<List<AnsweredQuestion>> getAllAnsweredQuestionsByUserId(int userId);
 }

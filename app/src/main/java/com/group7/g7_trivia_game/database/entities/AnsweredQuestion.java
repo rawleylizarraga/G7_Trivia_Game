@@ -23,6 +23,7 @@ public class AnsweredQuestion {
     private String dateAnswered;
     private int numberOfTries;
 
+
     /**
      * Constructor for AnsweredQuestion.
      * @param answeredQuestionId ID of the answered question

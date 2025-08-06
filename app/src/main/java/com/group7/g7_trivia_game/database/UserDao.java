@@ -39,11 +39,8 @@ public interface UserDao {
     /**
      * METHODS ADDED BY MADISON FOR TRIVIA REPO
      */
+
     @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " ORDER BY score DESC")
-    LiveData<List<User>> getAllUsersByScoreDescending();
-
-
-    @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " ORDER BY score DESC LIMIT 10")
     LiveData<List<User>> getTopUsersByScore();
 
     @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " ORDER BY username")

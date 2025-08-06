@@ -34,6 +34,8 @@ public class TriviaRepository {
         mAnsweredQuestionDao = db.answeredQuestionDao();
     }
 
+
+
     /**
      * Inserts a given {@code User} into the database by calling the DAO.
      * @param user {@code User} to add to the database.
@@ -110,7 +112,18 @@ public class TriviaRepository {
         return mAnsweredQuestionDao.getAllAnsweredQuestionsByUserId(userId);
     }
 
+
     //ADD ADDITIONAL METHODS AS NEEDED//
+
+
+    public LiveData<List<User>> getTopUsersByScore() {
+        return mUserDao.getTopUsersByScore();
+    }
+
+
+    public LiveData<List<User>> getAllUsers() {
+        return mUserDao.getAllUsers();
+    }
 
     // Returns one random question from a provided list of question IDs
     public LiveData<Question> getRandomQuestionFromIds(List<Integer> ids) {
@@ -126,6 +139,7 @@ public class TriviaRepository {
     public LiveData<List<Integer>> getAllAnsweredQuestionIds() {
         return mAnsweredQuestionDao.getAllAnsweredQuestionIds();
     }
+
 
 
 }

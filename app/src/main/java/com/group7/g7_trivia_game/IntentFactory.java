@@ -14,6 +14,7 @@ public class IntentFactory {
     /**
      * Creates new intent for the account creation activity.
      * Takes no extras.
+     *
      * @param context Application context
      * @return createAccount intent
      */
@@ -21,10 +22,11 @@ public class IntentFactory {
         Intent intent = new Intent(context, CreateAccountActivity.class);
         return intent;
     }
-      
+
     /**
      * Creates an intent for LoginActivity.
      * Takes no extras.
+     *
      * @param context Application context
      * @return Intent
      */
@@ -57,3 +59,4 @@ public class IntentFactory {
         return intent;
     }
 }
+

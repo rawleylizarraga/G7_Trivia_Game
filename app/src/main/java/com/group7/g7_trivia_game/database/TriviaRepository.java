@@ -115,11 +115,9 @@ public class TriviaRepository {
 
     //ADD ADDITIONAL METHODS AS NEEDED//
 
-
     public LiveData<List<User>> getTopUsersByScore() {
         return mUserDao.getTopUsersByScore();
     }
-
 
     public LiveData<List<User>> getAllUsers() {
         return mUserDao.getAllUsers();

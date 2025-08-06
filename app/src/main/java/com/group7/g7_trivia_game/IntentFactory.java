@@ -45,5 +45,18 @@ public class IntentFactory {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
     }
+
+    /**
+     * Creates an intent for the LeaderboardActivity.
+     * Takes no extras.
+     *
+     * @param context        Application context
+     * @param loggedInUserId
+     * @return Intent
+     */
+    static Intent leaderboardIntentFactory(Context context, int loggedInUserId){
+        Intent intent = new Intent(context, LeaderboardActivity.class);
+        return intent;
+    }
 }
 

@@ -15,7 +15,7 @@ public class LeaderboardViewModel extends AndroidViewModel {
 
     public LeaderboardViewModel(Application application) {
         super(application);
-        repository = TriviaRepository.getRepository(application); // Method in repo
+        repository = new TriviaRepository(application); // Method in repo
     }
 
     public LiveData<List<User>> getTopUsers() {
@@ -23,7 +23,4 @@ public class LeaderboardViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<User>> getAllUsers() {
-        return repository.getAllUsers(); // method in the repo
-    }
 }

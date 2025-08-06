@@ -42,8 +42,8 @@ public class LeaderboardActivity extends AppCompatActivity {
         binding.leaderboardRecyclerView.setAdapter(adapter);
         binding.leaderboardRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        viewModel.getAllUsers().observe(this, users -> {
-            adapter.setUserList(users);
+        viewModel.getTopUsers().observe(this, users -> {
+            adapter.setUserList(users); // List is already sorted by score
         });
 
         // Back button returns to MainActivity

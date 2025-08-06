@@ -114,10 +114,6 @@ public class TriviaRepository {
 
     //ADD ADDITIONAL METHODS AS NEEDED//
 
-    public static TriviaRepository getRepository(Application application) {
-        return new TriviaRepository(application);
-    }
-
 
     public LiveData<List<User>> getAllUsers() {
         return mUserDao.getAllUsers();

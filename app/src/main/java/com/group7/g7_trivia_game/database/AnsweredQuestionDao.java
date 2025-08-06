@@ -9,7 +9,6 @@ import androidx.room.Query;
 
 import com.group7.g7_trivia_game.database.entities.AnsweredQuestion;
 import com.group7.g7_trivia_game.database.entities.User;
-
 import java.util.List;
 
 /**
@@ -20,6 +19,7 @@ import java.util.List;
  */
 @Dao
 public interface AnsweredQuestionDao {
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(AnsweredQuestion... answeredQuestion);
@@ -45,4 +45,10 @@ public interface AnsweredQuestionDao {
     // Get all answered questions by userId, ordered by dateAnswered
     @Query("SELECT * FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE + " WHERE userId = :userId ORDER BY dateAnswered DESC")
     LiveData<List<AnsweredQuestion>> getAllAnsweredQuestionsByUserId(int userId);
+
+    // Retrieves a list of all question IDs in the table
+    @Query("SELECT questionId FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE)
+    LiveData<List<Integer>> getAllAnsweredQuestionIds();
+
+
 }

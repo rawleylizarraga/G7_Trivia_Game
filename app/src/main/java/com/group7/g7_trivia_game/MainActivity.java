@@ -4,12 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.group7.g7_trivia_game.databinding.ActivityMainBinding;
 import com.group7.g7_trivia_game.viewmodels.MainActivityViewModel;
 
-
+/**
+ * Activity that serves as the main entry point for the trivia game application.
+ * It handles user login, displays a welcome message,
+ * and provides navigation to various game features such as playing trivia,
+ * viewing past questions, and checking the leaderboard.
+ * @author Madison Nolen
+ * @since 8/2/2025
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String MAIN_ACTIVITY_USER_ID = "com.group7.g7_trivia_game.MAIN_ACTIVITY_USER_ID";
@@ -18,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int loggedInUserId = LOGGED_OUT;
     private MainActivityViewModel viewModel;
-    private MainActivityBinding binding;
+    private ActivityMainBinding binding;
 
     /**
      *
@@ -41,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // User is not logged in at this point, go to login screen
         if (loggedInUserId == -1) {
-            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+            Intent intent = IntentFactory.loginActivityIntentFactory(getApplicationContext());
             startActivity(intent);
         }
 
@@ -77,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.titleWelcomeTextView.setText("Welcome Admin, " + user.getUsername() + "!");
                     binding.adminButton.setVisibility(View.VISIBLE);
                     binding.adminButton.setOnClickListener(v -> {
-                        startActivity(IntentFactory.adminMenuIntentFactory(getApplicationContext(), loggedInUserId));
+                        startActivity(IntentFactory.adminActivityIntentFactory(getApplicationContext(), loggedInUserId));
                     });
                 } else {
                     binding.titleWelcomeTextView.setText("Welcome, " + user.getUsername() + "!");
@@ -99,15 +110,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupButtons() {
         binding.playTriviaButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.playTriviaIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.playTriviaActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.pastQuestionsButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.pastQuestionsIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.leaderboardButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.leaderboardIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.leaderboardActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
     }
 

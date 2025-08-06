@@ -4,7 +4,9 @@ import androidx.room.Entity;
 
 import com.group7.g7_trivia_game.database.TriviaDatabase;
 
+
 import java.util.Objects;
+
 
 /**
  * description
@@ -14,6 +16,7 @@ import java.util.Objects;
  */
 @Entity(tableName = TriviaDatabase.ANSWERED_QUESTION_TABLE)
 public class AnsweredQuestion {
+
     /**
      * Required fields: answeredQuestionId, userId, questionId, date answered, numberOfTries
      */
@@ -91,4 +94,5 @@ public class AnsweredQuestion {
     public int hashCode() {
         return Objects.hash(answeredQuestionId, userId, questionId, dateAnswered, numberOfTries);
     }
+
 }

@@ -1,6 +1,7 @@
 package com.group7.g7_trivia_game;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -52,9 +53,8 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
         binding.createQuestionButton.setOnClickListener(v -> {
-            // TODO: Launch CreateQuestionActivity or open a dialog
-
-
+            Intent intent = new Intent(AdminActivity.this, CreateQuestionActivity.class);
+            startActivity(intent);
         });
         binding.welcomeMenuButton.setOnClickListener(v -> {
             finish(); // returns to previous screen

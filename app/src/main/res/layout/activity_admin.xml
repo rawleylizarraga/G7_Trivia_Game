@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminActivity">
+
+    <TextView
+        android:id="@+id/titleAdminTextView"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/admin_menu"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/createQuestionButton"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/create_question"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleAdminTextView" />
+
+    <EditText
+        android:id="@+id/categoryInputEditText"
+        android:layout_width="273dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:hint="@string/enter_category_name"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/createQuestionButton"
+        tools:layout_editor_absoluteX="69dp" />
+
+    <Button
+        android:id="@+id/createCategoryButton"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/create_category"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryInputEditText" />
+
+    <Button
+        android:id="@+id/welcomeMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/welcome_menu"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/createCategoryButton" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

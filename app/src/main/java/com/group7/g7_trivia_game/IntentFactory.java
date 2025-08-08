@@ -47,6 +47,17 @@ public class IntentFactory {
     }
 
     /**
+     * Creates an intent for the AdminActivity.
+     * Takes no extras.
+     * @param context Application context
+     * @return Intent
+     */
+    static Intent adminActivityIntentFactory(Context context) {
+        Intent intent = new Intent(context, AdminActivity.class);
+        return intent;
+    }
+      
+    /**
      * Creates an intent for the LeaderboardActivity.
      * Takes no extras.
      *

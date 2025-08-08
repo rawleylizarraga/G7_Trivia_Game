@@ -123,8 +123,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.backButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.loginActivityIntentFactory(getApplicationContext()));
+            logout();
         });
+    }
+    private void logout() {
+        loggedInUserId = LOGGED_OUT;
+        updateSharedPreference();
+        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+
+        startActivity(IntentFactory.loginActivityIntentFactory(getApplicationContext()));
+        finish();
     }
 
     @Override

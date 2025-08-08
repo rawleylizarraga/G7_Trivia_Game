@@ -29,6 +29,30 @@ public class Question {
     public String question;
 
 
+    public Question() {}
+
+    /**
+     * Constructor for Question.
+     * @param questionId Id of the question
+     * @param points Points of the question
+     * @param answerCorrect Correct answer
+     * @param answerWrong1 Wrong answer 1
+     * @param answerWrong2 Wrong answer 2
+     * @param answerWrong3 Wrong answer 3
+     * @param category Category of the question
+     * @param question Question text
+     */
+    public Question(int questionId, int points, String answerCorrect, String answerWrong1, String answerWrong2, String answerWrong3, String category, String question) {
+        this.questionId = questionId;
+        this.points = points;
+        this.answerCorrect = answerCorrect;
+        this.answerWrong1 = answerWrong1;
+        this.answerWrong2 = answerWrong2;
+        this.answerWrong3 = answerWrong3;
+        this.category = category;
+        this.question = question;
+    }
+
     //To String
     @Override
     public String toString() {

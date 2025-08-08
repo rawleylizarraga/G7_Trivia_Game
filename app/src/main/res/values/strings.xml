@@ -24,4 +24,9 @@
     <string name="welcome_menu">Welcome Menu</string>
     <string name="back">Back</string>
     <string name="_1">#1</string>
+    <string name="create_a_question">Create a Question</string>
+    <string name="type_your_question_here">Type your question here...</string>
+    <string name="submit">Submit</string>
+    <string name="points">Points</string>
+    <string name="category">Category</string>
 </resources>

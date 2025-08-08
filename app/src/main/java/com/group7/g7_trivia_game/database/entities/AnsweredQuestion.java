@@ -1,6 +1,7 @@
 package com.group7.g7_trivia_game.database.entities;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.group7.g7_trivia_game.database.TriviaDatabase;
 
@@ -20,6 +21,7 @@ public class AnsweredQuestion {
     /**
      * Required fields: answeredQuestionId, userId, questionId, date answered, numberOfTries
      */
+    @PrimaryKey(autoGenerate = true)
     private int answeredQuestionId;
     private int userId;
     private int questionId;

@@ -18,6 +18,10 @@
     <string name="login_create_account">Create Account</string>
     <string name="preference_userId_key" />
     <string name="preference_file_key" />
+    <string name="create_question">Create Question</string>
+    <string name="enter_category_name">Enter Category Name</string>
+    <string name="create_category">Create Category</string>
+    <string name="welcome_menu">Welcome Menu</string>
     <string name="back">Back</string>
     <string name="_1">#1</string>
     <string name="create_a_question">Create a Question</string>

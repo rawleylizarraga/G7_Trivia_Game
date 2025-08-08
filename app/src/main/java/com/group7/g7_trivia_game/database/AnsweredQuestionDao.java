@@ -22,7 +22,7 @@ public interface AnsweredQuestionDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(AnsweredQuestion... answeredQuestion);
+    void insert(AnsweredQuestion answeredQuestion);
 
     @Delete
     void delete(AnsweredQuestion answeredQuestion);

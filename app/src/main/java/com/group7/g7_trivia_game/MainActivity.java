@@ -110,11 +110,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupButtons() {
         binding.playTriviaButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.playTriviaActivityIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.questionAnsweringActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.pastQuestionsButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
+            //todo: uncomment after past questions is implemented
+            //startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.leaderboardButton.setOnClickListener(v -> {

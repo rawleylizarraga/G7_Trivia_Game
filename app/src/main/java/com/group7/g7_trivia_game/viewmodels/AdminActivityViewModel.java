@@ -31,12 +31,17 @@ public class AdminActivityViewModel extends AndroidViewModel {
         repository = new TriviaRepository(application);
     }
     public void createCategory(String categoryName) {
-        Question placeholder = new Question(
-                "Placeholder question for category: " + categoryName,
-                "Placeholder answer",
-                categoryName,
-                1
+        if (categoryName == null || categoryName.trim().isEmpty()) {
+            return; // Avoid inserting empty categories
+        }
+        // "placeholder" question to hold the category
+        Question categoryQuestion = new Question(
+                0, // Auto-generate ID
+                "", // Empty question text for now
+                categoryName, // store the category
+                "", "", "", "", // Empty answer fields
+                ""  // Correct answer
         );
-        repository.insertQuestion(placeholder);
+        repository.insertQuestion(categoryQuestion);
     }
 }

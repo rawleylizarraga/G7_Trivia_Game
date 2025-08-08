@@ -86,10 +86,10 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
                                         String correct = question.getAnswerCorrect();
 
                                         if (selected.equals(correct)) {
-                                            Toast.makeText(this,"Yay! You answered correctly.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(QuestionAnsweringActivity.this,"Yay! You answered correctly.", Toast.LENGTH_SHORT).show();
                                             questionViewModel.updateUserScore(userId, question.getPoints());
                                         } else {
-                                            Toast.makeText(this,"Wrong answer.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(QuestionAnsweringActivity.this,"Wrong answer.", Toast.LENGTH_SHORT).show();
                                         }
 
                                         // Mark question as answered

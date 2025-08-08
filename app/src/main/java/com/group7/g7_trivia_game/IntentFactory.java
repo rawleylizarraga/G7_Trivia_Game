@@ -52,7 +52,7 @@ public class IntentFactory {
      * @param context Application context
      * @return Intent
      */
-    static Intent adminActivityIntentFactory(Context context) {
+    static Intent adminActivityIntentFactory(Context context, int loggedInUserId) {
         Intent intent = new Intent(context, AdminActivity.class);
         return intent;
     }
@@ -65,8 +65,13 @@ public class IntentFactory {
      * @param loggedInUserId
      * @return Intent
      */
-    static Intent leaderboardIntentFactory(Context context, int loggedInUserId){
+    static Intent leaderboardActivityIntentFactory(Context context, int loggedInUserId){
         Intent intent = new Intent(context, LeaderboardActivity.class);
+        return intent;
+    }
+
+    static Intent questionAnsweringActivityIntentFactory(Context context, int loggedInUserId){
+        Intent intent = new Intent(context, QuestionAnsweringActivity.class);
         return intent;
     }
 }

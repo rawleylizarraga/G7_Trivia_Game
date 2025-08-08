@@ -84,14 +84,15 @@ public class TriviaRepository {
         return mUserDao.getUserByUserId(userId);
     }
 
-    /**
-     * Retrieves a {@code Question} object from the database by finding the provided questionId.
-     * @param questionId String used to retrieve desired {@code Question} object from database.
-     * @return {@code LiveData<Question>}
-     */
-    public LiveData<User> getQuestionByQuestionId(int questionId) {
-        return mQuestionDao.getQuestionByQuestionId(questionId);
-    }
+    //unneeded?
+//    /**
+//     * Retrieves a {@code Question} object from the database by finding the provided questionId.
+//     * @param questionId String used to retrieve desired {@code Question} object from database.
+//     * @return {@code LiveData<Question>}
+//     */
+//    public LiveData<User> getQuestionByQuestionId(int questionId) {
+//        return mQuestionDao.getQuestionByQuestionId(questionId);
+//    }
 
     /**
      * Retrieves a {@code AnsweredQuestion} object from the database by finding the provided questionId and userId.
@@ -99,7 +100,7 @@ public class TriviaRepository {
      * @param userId String used to retrieve desired {@code AnsweredQuestion} object from database.
      * @return {@code LiveData<AnsweredQuestion>}
      */
-    public LiveData<User> getAnsweredQuestion(int questionId, int userId) {
+    public LiveData<AnsweredQuestion> getAnsweredQuestion(int questionId, int userId) {
         return mAnsweredQuestionDao.getAnsweredQuestion(questionId, userId);
     }
 

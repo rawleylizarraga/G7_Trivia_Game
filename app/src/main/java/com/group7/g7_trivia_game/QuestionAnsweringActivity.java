@@ -42,7 +42,7 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
         questionViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
 
         //Get the user id from the intent
-        int userId = getIntent().getIntExtra("userId", -1);
+        int userId = getIntent().getIntExtra(MainActivity.MAIN_ACTIVITY_USER_ID, -1);
 
         //Observe the list of all question IDs
         questionViewModel.getAllQuestionIds().observe(this, allIds -> {

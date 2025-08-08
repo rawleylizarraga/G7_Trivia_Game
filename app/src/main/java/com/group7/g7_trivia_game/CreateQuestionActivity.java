@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.group7.g7_trivia_game.database.entities.Question;
 import com.group7.g7_trivia_game.databinding.ActivityCreateQuestionBinding;
 import com.group7.g7_trivia_game.viewmodels.QuestionViewModel;
 
@@ -20,6 +21,13 @@ public class CreateQuestionActivity extends AppCompatActivity {
     private QuestionViewModel questionViewModel;
 
 
+    /**
+     * Updates binding and viewmodel with initial data.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +65,17 @@ public class CreateQuestionActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        questionViewModel.insertQuestion(questionText, correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3, category, points);
+
+        Question q = new Question();
+        q.setQuestion(questionText);
+        q.setAnswerCorrect(correctAnswer);
+        q.setAnswerWrong1(wrongAnswer1);
+        q.setAnswerWrong2(wrongAnswer2);
+        q.setAnswerWrong3(wrongAnswer3);
+        q.setCategory(category);
+        q.setPoints(Integer.parseInt(points));
+        questionViewModel.insertQuestion(q);
+
         Toast.makeText(this, "Question created!", Toast.LENGTH_SHORT).show();
         returnToMain();
 

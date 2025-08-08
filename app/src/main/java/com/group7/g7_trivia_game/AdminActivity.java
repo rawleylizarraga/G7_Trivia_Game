@@ -1,5 +1,6 @@
 package com.group7.g7_trivia_game;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.group7.g7_trivia_game.viewmodels.AdminActivityViewModel;
  * Activity for the admin to create categories and questions.
  * This activity allows the admin to create new categories and questions for the trivia game.
  * It includes buttons for creating categories and questions, and a button to return to the welcome menu.
+ *
  * @author Madison Nolen
  * @since 8/2/2025
  */
@@ -29,6 +31,7 @@ public class AdminActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(AdminActivityViewModel.class);
 
+        // Create Category button
         binding.createCategoryButton.setOnClickListener(v -> {
             String category = binding.categoryInputEditText.getText().toString().trim();
 
@@ -36,13 +39,22 @@ public class AdminActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please enter a category", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             viewModel.createCategory(category);
             Toast.makeText(this, "Category added: " + category, Toast.LENGTH_SHORT).show();
+
             binding.categoryInputEditText.setText(""); // Clear input
         });
 
+        // Create Question button → launches CreateQuestionActivity
+        binding.createQuestionButton.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, CreateQuestionActivity.class);
+            startActivity(intent);
+        });
+
+        // Welcome Menu button → return to previous screen
         binding.welcomeMenuButton.setOnClickListener(v -> {
-            finish(); // returns to previous screen
+            finish();
         });
     }
 }

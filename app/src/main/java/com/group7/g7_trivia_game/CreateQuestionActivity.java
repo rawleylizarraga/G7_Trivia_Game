@@ -61,11 +61,13 @@ public class CreateQuestionActivity extends AppCompatActivity {
         String category = binding.categoryEditText.getText().toString().trim();
         String points = binding.pointsEditText.getText().toString().trim();
 
+        // Check if any of the fields are empty
         if (questionText.isEmpty() || correctAnswer.isEmpty() || wrongAnswer1.isEmpty() || wrongAnswer2.isEmpty() || wrongAnswer3.isEmpty() || category.isEmpty() || points.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Create a new question object and insert it into the database
         Question q = new Question();
         q.setQuestion(questionText);
         q.setAnswerCorrect(correctAnswer);

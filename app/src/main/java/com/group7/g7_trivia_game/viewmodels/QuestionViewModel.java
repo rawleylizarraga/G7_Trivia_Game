@@ -5,12 +5,9 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.group7.g7_trivia_game.database.QuestionDao;
-import com.group7.g7_trivia_game.database.TriviaDatabase;
 import com.group7.g7_trivia_game.database.TriviaRepository;
 import com.group7.g7_trivia_game.database.entities.Question;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionViewModel extends AndroidViewModel {
@@ -20,7 +17,7 @@ public class QuestionViewModel extends AndroidViewModel {
      * Constructor for QuestionViewModel.
      * @param application Application context
      */
-    public QuestionViewModel(@NonNull Application application) {
+    public QuestionViewModel(Application application) {
         super(application);
         repository = new TriviaRepository(application);
     }
@@ -65,5 +62,28 @@ public class QuestionViewModel extends AndroidViewModel {
      */
     public void updateUserScore(int userId, int points) {
         //TODO: Implement this method
+    }
+
+    /**
+     * Inserts a new question into the database.
+     *
+     * @param questionText  Question text
+     * @param correctAnswer Correct answer
+     * @param wrongAnswer1  Wrong answer 1
+     * @param wrongAnswer2  Wrong answer 2
+     * @param wrongAnswer3  Wrong answer 3
+     * @param category      Category of the question
+     * @param points        Points of the question
+     */
+    public void insertQuestion(String questionText, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3, String category, String points) {
+            Question q = new Question();
+            q.setQuestion(questionText);
+            q.setAnswerCorrect(correctAnswer);
+            q.setAnswerWrong1(wrongAnswer1);
+            q.setAnswerWrong2(wrongAnswer2);
+            q.setAnswerWrong3(wrongAnswer3);
+            q.setCategory(category);
+            q.setPoints(Integer.parseInt(points));
+            repository.insertQuestion(q);
     }
 }

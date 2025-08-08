@@ -90,13 +90,26 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:hint="Category"
+        android:hint="@string/category"
         android:inputType="text"
         android:padding="12dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wrongAnswer3EditText" />
+
+    <EditText
+        android:id="@+id/pointsEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:hint="@string/points"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryEditText" />
 
     <Button
         android:id="@+id/createQuestionSubmitButton"
@@ -108,7 +121,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/categoryEditText" />
+        app:layout_constraintTop_toBottomOf="@id/pointsEditText" />
 
     <Button
         android:id="@+id/createQuestionBackButton"
@@ -120,6 +133,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/createQuestionSubmitButton" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

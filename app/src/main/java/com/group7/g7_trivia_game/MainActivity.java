@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.backButton.setOnClickListener(v -> {
-            finish();
+            startActivity(IntentFactory.loginActivityIntentFactory(getApplicationContext()));
         });
     }
 

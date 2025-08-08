@@ -43,6 +43,7 @@ public class IntentFactory {
      */
     static Intent mainActivityIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(MainActivity.MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }
 
@@ -52,7 +53,7 @@ public class IntentFactory {
      * @param context Application context
      * @return Intent
      */
-    static Intent adminActivityIntentFactory(Context context, int loggedInUserId) {
+    static Intent adminActivityIntentFactory(Context context) {
         Intent intent = new Intent(context, AdminActivity.class);
         return intent;
     }
@@ -62,16 +63,16 @@ public class IntentFactory {
      * Takes no extras.
      *
      * @param context        Application context
-     * @param loggedInUserId
      * @return Intent
      */
-    static Intent leaderboardActivityIntentFactory(Context context, int loggedInUserId){
+    static Intent leaderboardActivityIntentFactory(Context context){
         Intent intent = new Intent(context, LeaderboardActivity.class);
         return intent;
     }
 
-    static Intent questionAnsweringActivityIntentFactory(Context context, int loggedInUserId){
+    static Intent questionAnsweringActivityIntentFactory(Context context, int userId){
         Intent intent = new Intent(context, QuestionAnsweringActivity.class);
+        intent.putExtra(MainActivity.MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }
 }

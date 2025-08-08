@@ -24,10 +24,10 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
 
     /**
      * Updates binding and viewmodel with initial data.
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down then this Bundle contains the data it most
+     *                           recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +36,16 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-
         //Initialize the view model
         questionViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
 
         //Get the user id from the intent
         int userId = getIntent().getIntExtra(MainActivity.MAIN_ACTIVITY_USER_ID, -1);
+
+        //Button listener for back button, returning to the main activity
+        binding.backButton.setOnClickListener(v -> {
+            startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), userId));
+        });
 
         //Observe the list of all question IDs
         questionViewModel.getAllQuestionIds().observe(this, allIds -> {
@@ -114,7 +118,6 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
             }
         });
             }
-
 
     /**
      * Filters out answered questions from the list of all questions.

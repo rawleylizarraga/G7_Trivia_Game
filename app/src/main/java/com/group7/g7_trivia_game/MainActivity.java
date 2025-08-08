@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // User is not logged in at this point, go to login screen
         if (loggedInUserId == -1) {
-            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+            Intent intent = IntentFactory.loginActivityIntentFactory(getApplicationContext());
             startActivity(intent);
         }
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.titleWelcomeTextView.setText("Welcome Admin, " + user.getUsername() + "!");
                     binding.adminButton.setVisibility(View.VISIBLE);
                     binding.adminButton.setOnClickListener(v -> {
-                        startActivity(IntentFactory.adminMenuIntentFactory(getApplicationContext(), loggedInUserId));
+                        startActivity(IntentFactory.adminActivityIntentFactory(getApplicationContext(), loggedInUserId));
                     });
                 } else {
                     binding.titleWelcomeTextView.setText("Welcome, " + user.getUsername() + "!");
@@ -110,15 +110,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupButtons() {
         binding.playTriviaButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.playTriviaIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.playTriviaActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.pastQuestionsButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.pastQuestionsIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.leaderboardButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.leaderboardIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.leaderboardActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
     }
 

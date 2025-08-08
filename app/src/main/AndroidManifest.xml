@@ -16,6 +16,9 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
+            android:name=".LeaderboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateAccountActivity"
             android:exported="false" />
         <activity

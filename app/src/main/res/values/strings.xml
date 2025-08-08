@@ -22,4 +22,6 @@
     <string name="enter_category_name">Enter Category Name</string>
     <string name="create_category">Create Category</string>
     <string name="welcome_menu">Welcome Menu</string>
+    <string name="back">Back</string>
+    <string name="_1">#1</string>
 </resources>

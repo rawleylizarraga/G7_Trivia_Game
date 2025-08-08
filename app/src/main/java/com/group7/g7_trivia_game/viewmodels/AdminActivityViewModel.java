@@ -31,7 +31,7 @@ public class AdminActivityViewModel extends AndroidViewModel {
         repository = new TriviaRepository(application);
     }
     public void createCategory(String categoryName) {
-        if (categoryName == null || categoryName.trim().isEmpty()) {
+        if (categoryName == null || categoryName.isEmpty()) {
             return; // Avoid inserting empty categories
         }
         // "placeholder" question to hold the category

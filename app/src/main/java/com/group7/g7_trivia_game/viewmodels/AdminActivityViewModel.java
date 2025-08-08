@@ -31,11 +31,16 @@ public class AdminActivityViewModel extends AndroidViewModel {
         repository = new TriviaRepository(application);
     }
     public void createCategory(String categoryName) {
+        // Create a placeholder Question so category gets stored
         Question placeholder = new Question(
-                "Placeholder question for category: " + categoryName,
-                "Placeholder answer",
-                categoryName,
-                1
+                0, // questionId (Room can auto-generate if annotated with @PrimaryKey(autoGenerate = true))
+                1, // points
+                "Placeholder correct answer", // answerCorrect
+                "Wrong answer 1",             // answerWrong1
+                "Wrong answer 2",             // answerWrong2
+                "Wrong answer 3",             // answerWrong3
+                categoryName,                  // category
+                "Placeholder question for category: " + categoryName // question
         );
         repository.insertQuestion(placeholder);
     }

@@ -61,7 +61,7 @@ public class QuestionViewModel extends AndroidViewModel {
      * @param points Points to be added
      */
     public void updateUserScore(int userId, int points) {
-        //TODO: Implement this method
+        repository.updateUserScore(userId, points);
     }
 
     /**

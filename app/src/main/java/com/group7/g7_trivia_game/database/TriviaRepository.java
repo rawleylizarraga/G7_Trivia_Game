@@ -138,6 +138,11 @@ public class TriviaRepository {
         return mAnsweredQuestionDao.getAllAnsweredQuestionIds();
     }
 
-
+    // Updates the user's score
+    public void updateUserScore(int userId, int points) {
+        TriviaDatabase.databaseWriteExecutor.execute(() ->
+            mUserDao.updateUserScore(userId, points)
+        );
+    }
 
 }

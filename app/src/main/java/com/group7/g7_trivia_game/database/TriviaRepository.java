@@ -34,6 +34,8 @@ public class TriviaRepository {
         mAnsweredQuestionDao = db.answeredQuestionDao();
     }
 
+
+
     /**
      * Inserts a given {@code User} into the database by calling the DAO.
      * @param user {@code User} to add to the database.
@@ -82,14 +84,15 @@ public class TriviaRepository {
         return mUserDao.getUserByUserId(userId);
     }
 
-    /**
-     * Retrieves a {@code Question} object from the database by finding the provided questionId.
-     * @param questionId String used to retrieve desired {@code Question} object from database.
-     * @return {@code LiveData<Question>}
-     */
-    public LiveData<User> getQuestionByQuestionId(int questionId) {
-        return mQuestionDao.getQuestionByQuestionId(questionId);
-    }
+    //unneeded?
+//    /**
+//     * Retrieves a {@code Question} object from the database by finding the provided questionId.
+//     * @param questionId String used to retrieve desired {@code Question} object from database.
+//     * @return {@code LiveData<Question>}
+//     */
+//    public LiveData<User> getQuestionByQuestionId(int questionId) {
+//        return mQuestionDao.getQuestionByQuestionId(questionId);
+//    }
 
     /**
      * Retrieves a {@code AnsweredQuestion} object from the database by finding the provided questionId and userId.
@@ -97,7 +100,7 @@ public class TriviaRepository {
      * @param userId String used to retrieve desired {@code AnsweredQuestion} object from database.
      * @return {@code LiveData<AnsweredQuestion>}
      */
-    public LiveData<User> getAnsweredQuestion(int questionId, int userId) {
+    public LiveData<AnsweredQuestion> getAnsweredQuestion(int questionId, int userId) {
         return mAnsweredQuestionDao.getAnsweredQuestion(questionId, userId);
     }
 
@@ -110,5 +113,32 @@ public class TriviaRepository {
         return mAnsweredQuestionDao.getAllAnsweredQuestionsByUserId(userId);
     }
 
+
     //ADD ADDITIONAL METHODS AS NEEDED//
+
+    public LiveData<List<User>> getTopUsersByScore() {
+        return mUserDao.getTopUsersByScore();
+    }
+
+    public LiveData<List<User>> getAllUsers() {
+        return mUserDao.getAllUsers();
+    }
+
+    // Returns one random question from a provided list of question IDs
+    public LiveData<Question> getRandomQuestionFromIds(List<Integer> ids) {
+        return mQuestionDao.getRandomQuestionFromIds(ids);
+    }
+
+    // Returns all question IDs from the question_table
+    public LiveData<List<Integer>> getAllQuestionIds() {
+        return mQuestionDao.getAllQuestionIds();
+    }
+
+    // Returns all answered question IDs from the answered_question_table
+    public LiveData<List<Integer>> getAllAnsweredQuestionIds() {
+        return mAnsweredQuestionDao.getAllAnsweredQuestionIds();
+    }
+
+
+
 }

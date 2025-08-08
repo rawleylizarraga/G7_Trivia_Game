@@ -23,7 +23,7 @@ import com.group7.g7_trivia_game.viewmodels.MainActivityViewModel;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String MAIN_ACTIVITY_USER_ID = "com.group7.g7_trivia_game.MAIN_ACTIVITY_USER_ID";
+    public static final String MAIN_ACTIVITY_USER_ID = "com.group7.g7_trivia_game.MAIN_ACTIVITY_USER_ID";
     private static final String SAVED_INSTANCE_USERID_KEY = "com.group7.g7_trivia_game.SAVED_INSTANCE_USERID_KEY";
     private static final int LOGGED_OUT = -1;
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.titleWelcomeTextView.setText("Welcome Admin, " + user.getUsername() + "!");
                     binding.adminButton.setVisibility(View.VISIBLE);
                     binding.adminButton.setOnClickListener(v -> {
-                        startActivity(IntentFactory.adminActivityIntentFactory(getApplicationContext(), loggedInUserId));
+                        startActivity(IntentFactory.adminActivityIntentFactory(getApplicationContext()));
                     });
                 } else {
                     binding.titleWelcomeTextView.setText("Welcome, " + user.getUsername() + "!");
@@ -110,15 +110,16 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupButtons() {
         binding.playTriviaButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.playTriviaActivityIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.questionAnsweringActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.pastQuestionsButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
+            //todo: uncomment after past questions is implemented
+            //startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.leaderboardButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.leaderboardActivityIntentFactory(getApplicationContext(), loggedInUserId));
+            startActivity(IntentFactory.leaderboardActivityIntentFactory(getApplicationContext()));
         });
 
         binding.backButton.setOnClickListener(v -> {

@@ -14,6 +14,7 @@ public class IntentFactory {
     /**
      * Creates new intent for the account creation activity.
      * Takes no extras.
+     *
      * @param context Application context
      * @return createAccount intent
      */
@@ -21,10 +22,11 @@ public class IntentFactory {
         Intent intent = new Intent(context, CreateAccountActivity.class);
         return intent;
     }
-      
+
     /**
      * Creates an intent for LoginActivity.
      * Takes no extras.
+     *
      * @param context Application context
      * @return Intent
      */
@@ -32,4 +34,46 @@ public class IntentFactory {
         Intent intent = new Intent(context, LoginActivity.class);
         return intent;
     }
+
+    /**
+     * Creates an intent for the MainActivity.
+     * Takes no extras.
+     * @param context Application context
+     * @return Intent
+     */
+    static Intent mainActivityIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(MainActivity.MAIN_ACTIVITY_USER_ID, userId);
+        return intent;
+    }
+
+    /**
+     * Creates an intent for the AdminActivity.
+     * Takes no extras.
+     * @param context Application context
+     * @return Intent
+     */
+    static Intent adminActivityIntentFactory(Context context) {
+        Intent intent = new Intent(context, AdminActivity.class);
+        return intent;
+    }
+      
+    /**
+     * Creates an intent for the LeaderboardActivity.
+     * Takes no extras.
+     *
+     * @param context        Application context
+     * @return Intent
+     */
+    static Intent leaderboardActivityIntentFactory(Context context){
+        Intent intent = new Intent(context, LeaderboardActivity.class);
+        return intent;
+    }
+
+    static Intent questionAnsweringActivityIntentFactory(Context context, int userId){
+        Intent intent = new Intent(context, QuestionAnsweringActivity.class);
+        intent.putExtra(MainActivity.MAIN_ACTIVITY_USER_ID, userId);
+        return intent;
+    }
 }
+

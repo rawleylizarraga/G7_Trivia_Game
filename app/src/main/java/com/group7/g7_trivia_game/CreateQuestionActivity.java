@@ -8,17 +8,38 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.group7.g7_trivia_game.databinding.ActivityCreateQuestionBinding;
+import com.group7.g7_trivia_game.viewmodels.QuestionViewModel;
+
 public class CreateQuestionActivity extends AppCompatActivity {
+
+    private int userId;
+    private ActivityCreateQuestionBinding binding;
+    private QuestionViewModel questionViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_create_question);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityCreateQuestionBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        userId = getIntent().getIntExtra("userId", -1);
+
+        questionViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
+
+        //Button listeners for returning to the main activity
+        binding.createQuestionBackButton.setOnClickListener(v -> {
+            returnToMain();
         });
+
+        binding.createQuestionSubmitButton.setOnClickListener(v -> {
+            createQuestion();
+        });
+
+    }
+
+    private void returnToMain() {
+        startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), userId));
     }
 }

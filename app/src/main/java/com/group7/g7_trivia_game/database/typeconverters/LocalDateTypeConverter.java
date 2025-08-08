@@ -1,5 +1,5 @@
 
-package com.example.hw03gymlog.database.typeConverters;
+package com.group7.g7_trivia_game.database.typeconverters;
 
 import androidx.room.TypeConverter;
 

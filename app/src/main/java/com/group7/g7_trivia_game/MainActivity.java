@@ -121,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
         binding.leaderboardButton.setOnClickListener(v -> {
             startActivity(IntentFactory.leaderboardActivityIntentFactory(getApplicationContext()));
         });
+
+        binding.backButton.setOnClickListener(v -> {
+            startActivity(IntentFactory.loginActivityIntentFactory(getApplicationContext()));
+        });
     }
 
     @Override

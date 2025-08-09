@@ -8,6 +8,7 @@ import com.group7.g7_trivia_game.database.entities.AnsweredQuestion;
 import com.group7.g7_trivia_game.database.entities.Question;
 import com.group7.g7_trivia_game.database.entities.User;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -139,6 +140,24 @@ public class TriviaRepository {
         return mAnsweredQuestionDao.getAllAnsweredQuestionIds();
     }
 
+    // Updates the user's score
+    public void updateUserScore(int userId, int points) {
+        TriviaDatabase.databaseWriteExecutor.execute(() ->
+            mUserDao.updateUserScore(userId, points)
+        );
+    }
 
+    // Inserts a new answered question into the database
+    public void insertAnsweredQuestion(int questionId, int userId) {
+        TriviaDatabase.databaseWriteExecutor.execute(() -> {
+            AnsweredQuestion aq = new AnsweredQuestion();
+            aq.setUserId(userId);
+            aq.setQuestionId(questionId);
+            aq.setDateAnswered(java.time.LocalDate.now().toString());
+            aq.setNumberOfTries(1);
+            mAnsweredQuestionDao.insert(aq);
+                }
+        );
+    }
 
 }

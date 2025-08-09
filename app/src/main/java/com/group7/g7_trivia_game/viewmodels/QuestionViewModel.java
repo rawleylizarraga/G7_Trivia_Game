@@ -48,11 +48,12 @@ public class QuestionViewModel extends AndroidViewModel {
     }
 
     /**
-     * Inserts a new question into the database.
+     * Inserts a answered question into the database.
      * @param question Question to be inserted
+     * @param userId User ID
      */
     public void insertAnsweredQuestion(int questionId, int userId) {
-        //TODO: Implement this method
+        repository.insertAnsweredQuestion(questionId, userId);
     }
 
     /**
@@ -61,29 +62,14 @@ public class QuestionViewModel extends AndroidViewModel {
      * @param points Points to be added
      */
     public void updateUserScore(int userId, int points) {
-        //TODO: Implement this method
+        repository.updateUserScore(userId, points);
     }
 
     /**
      * Inserts a new question into the database.
-     *
-     * @param questionText  Question text
-     * @param correctAnswer Correct answer
-     * @param wrongAnswer1  Wrong answer 1
-     * @param wrongAnswer2  Wrong answer 2
-     * @param wrongAnswer3  Wrong answer 3
-     * @param category      Category of the question
-     * @param points        Points of the question
+     * @param q Question to be inserted
      */
-    public void insertQuestion(String questionText, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3, String category, String points) {
-            Question q = new Question();
-            q.setQuestion(questionText);
-            q.setAnswerCorrect(correctAnswer);
-            q.setAnswerWrong1(wrongAnswer1);
-            q.setAnswerWrong2(wrongAnswer2);
-            q.setAnswerWrong3(wrongAnswer3);
-            q.setCategory(category);
-            q.setPoints(Integer.parseInt(points));
+    public void insertQuestion(Question q) {
             repository.insertQuestion(q);
     }
 }

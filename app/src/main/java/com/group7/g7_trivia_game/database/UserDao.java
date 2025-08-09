@@ -45,4 +45,10 @@ public interface UserDao {
 
     @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getAllUsers();
+
+    /**
+     * METHODS ADDED BY MARCO FOR QUESTION ACTIVITY
+     */
+    @Query("UPDATE " + TriviaDatabase.USER_TABLE + " SET score = score + :points WHERE id == :userId")
+    void updateUserScore(int userId, int points);
 }

@@ -29,6 +29,8 @@ public class AnsweredQuestion {
     private int numberOfTries;
 
 
+    public AnsweredQuestion() {}
+
     /**
      * Constructor for AnsweredQuestion.
      * @param answeredQuestionId ID of the answered question

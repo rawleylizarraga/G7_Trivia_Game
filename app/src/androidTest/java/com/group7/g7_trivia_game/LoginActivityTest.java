@@ -6,7 +6,6 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.Intents.intending;
-import static androidx.test.espresso.intent.Intents.times;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -54,7 +53,7 @@ public class LoginActivityTest {
         onView(withId(R.id.loginUsernameEditText)).perform(typeText("testuser1"), closeSoftKeyboard());
         onView(withId(R.id.loginPasswordEditText)).perform(typeText("testuser1"), closeSoftKeyboard());
 
-        // Simulate pressing the create account button to start intent.
+        // Simulate pressing the login button to start intent.
         onView(withId(R.id.loginLoginButton)).perform(click());
 
         // Check that it created the correct intent (CreateAccountActivity) with the test user's id

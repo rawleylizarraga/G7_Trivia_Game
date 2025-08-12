@@ -1,9 +1,12 @@
 package com.group7.g7_trivia_game;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.group7.g7_trivia_game.database.entities.User;
@@ -80,25 +83,29 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
 
         //Use observers to check if the input username is already taken by seeing if getUserByUsername returns a User (already taken) or null (not taken)
-        createAccountViewModel.getUserByUsername(username).observe(this, user -> {
-            if (user != null) {
-                Toast.makeText(this, "Username is taken", Toast.LENGTH_SHORT).show();
-                return;
-            } else {
-                Toast.makeText(this, "Creating account", Toast.LENGTH_SHORT).show();
-                User newUser = new User(username, password);
-                createAccountViewModel.insertUser(newUser);
+        LiveData<User> userLiveData = createAccountViewModel.getUserByUsername(username);
+        Observer<User> userObserver = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user != null) {
+                    Toast.makeText(CreateAccountActivity.this, "Username is taken", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CreateAccountActivity.this, "Creating account", Toast.LENGTH_SHORT).show();
+                    User newUser = new User(username, password);
+                    createAccountViewModel.insertUser(newUser);
 
-                //Uses an observer to ensure that the userId is successfully retrieved before starting the MainActivity/Landing page
-                createAccountViewModel.getUserByUsername(username).observe(this, userCheck -> {
-                    if (userCheck != null) {
-                        startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), userCheck.getId()));
-                    } else {
-                        Toast.makeText(this, "Failed to create account", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                });
+                    //Uses an observer to ensure that the userId is successfully retrieved before starting the MainActivity/Landing page
+                    createAccountViewModel.getUserByUsername(username).observe(CreateAccountActivity.this, userCheck -> {
+                        if (userCheck != null) {
+                            startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), userCheck.getId()));
+                        } else {
+                            Toast.makeText(CreateAccountActivity.this, "Failed to create account", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                userLiveData.removeObserver(this);
             }
-        });
+        };
+        userLiveData.observe(this, userObserver);
     }
 }

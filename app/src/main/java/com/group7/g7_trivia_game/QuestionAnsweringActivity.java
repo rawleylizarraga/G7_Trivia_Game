@@ -44,7 +44,7 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
 
         //Button listener for back button, returning to the main activity
         binding.backButton.setOnClickListener(v -> {
-            startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), userId));
+           finish();
         });
 
         //Observe the list of all question IDs

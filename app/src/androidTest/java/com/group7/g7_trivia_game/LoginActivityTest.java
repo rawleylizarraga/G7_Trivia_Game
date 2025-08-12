@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * Intent tests for login activity buttons
+ * Intent tests for CreateAccountActivity and MainActivity started by the buttons in LoginActivity
  *
  * @author Rawley Lizarraga
  * @since 8/11/2025
@@ -59,6 +59,6 @@ public class LoginActivityTest {
 
         // Check that it created the correct intent (CreateAccountActivity) with the test user's id
         int testUser1Id = 2;
-        intended(allOf(hasComponent(MainActivity.class.getName()), hasExtra(MainActivity.MAIN_ACTIVITY_USER_ID, testUser1Id)), times(1));
+        intended(allOf(hasComponent(MainActivity.class.getName()), hasExtra(MainActivity.MAIN_ACTIVITY_USER_ID, testUser1Id)));
     }
 }

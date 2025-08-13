@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.group7.g7_trivia_game.database.entities.User;
 
@@ -23,6 +24,9 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User... user);
 
+    @Update
+    void update(User... users);
+
     @Delete
     void delete(User user);
 
@@ -34,6 +38,9 @@ public interface UserDao {
 
     @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+    @Query("SELECT * FROM " + TriviaDatabase.USER_TABLE + " WHERE username == :username")
+    User getUserByUserNameSynchronous(String username);
 
 
     /**

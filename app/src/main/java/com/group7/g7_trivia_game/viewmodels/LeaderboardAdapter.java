@@ -13,6 +13,15 @@ import com.group7.g7_trivia_game.database.entities.User;
 
 import java.util.List;
 
+/**
+ * LeaderboardAdapter class
+ * This adapter is used to display the leaderboard in a RecyclerView.
+ * It binds User data to the views in each leaderboard item.
+ * It displays the username, score, and rank of each user.
+ *
+ * @author Madison Nolen
+ * @since 8/5/2025
+ */
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder> {
 
     private List<User> userList;

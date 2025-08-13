@@ -16,7 +16,7 @@ import com.group7.g7_trivia_game.database.entities.Question;
 /**
  * View model for the admin activity to access the repository.
  * @author Madison Nolen
- * @since 8/2/2025
+ * @since 8/5/2025
  */
 
 

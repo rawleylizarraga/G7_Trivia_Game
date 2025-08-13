@@ -50,5 +50,7 @@ public interface AnsweredQuestionDao {
     @Query("SELECT questionId FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE)
     LiveData<List<Integer>> getAllAnsweredQuestionIds();
 
-
+    // Retrieves a random answered question from the list of IDs
+    @Query("SELECT * FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE + " WHERE answeredQuestionId == :answeredQuestionId")
+    AnsweredQuestion getAnsweredQuestionByIdSynchronous(int answeredQuestionId);
 }

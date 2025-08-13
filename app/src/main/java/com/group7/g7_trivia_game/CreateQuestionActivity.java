@@ -40,7 +40,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
 
         //Button listeners for returning to the main activity
         binding.createQuestionBackButton.setOnClickListener(v -> {
-            returnToMain();
+            finish();
         });
 
         binding.createQuestionSubmitButton.setOnClickListener(v -> {

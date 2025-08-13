@@ -1,15 +1,15 @@
 package com.group7.g7_trivia_game;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.group7.g7_trivia_game.database.entities.User;
 import com.group7.g7_trivia_game.databinding.ActivityLoginBinding;
 import com.group7.g7_trivia_game.viewmodels.LoginActivityViewModel;
 
@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //Button listeners to login or create account
         binding.loginLoginButton.setOnClickListener(v -> {
-            Log.d("help", "button pressed");
             verifyUser();
         });
 
@@ -61,23 +60,14 @@ public class LoginActivity extends AppCompatActivity {
         String username = binding.loginUsernameEditText.getText().toString().trim();
         String password = binding.loginPasswordEditText.getText().toString().trim();
 
-        LiveData<User> userLiveData = loginViewModel.getUserByUsername(username);
-        Observer<User> userObserver = new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                if (user != null && user.getPassword().equals(password)) {
-                    Log.d("help", "activity started");
-                    Toast.makeText(LoginActivity.this, "Logging in...", Toast.LENGTH_SHORT).show();
-                    startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), user.getId()));
-
-                    // get me out of this god forsaken observer i've been getting multiple intents for so long
-                    userLiveData.removeObserver(this);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                }
+        loginViewModel.getUserByUsername(username).observe(this, user -> {
+            if (user != null && user.getPassword().equals(password)) {
+                Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show();
+                startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+            } else {
+                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
-        };
-        userLiveData.observe(this, userObserver);
+        });
     }
 
     /**

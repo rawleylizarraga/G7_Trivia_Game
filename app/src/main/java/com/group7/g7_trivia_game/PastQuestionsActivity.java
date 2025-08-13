@@ -1,3 +1,9 @@
+
+/**
+ * Activity to display past trivia questions.
+ * @author Cristina Pizano
+ * @since 8/2/2025
+ */
 package com.group7.g7_trivia_game;
 
 import android.content.Intent;
@@ -33,7 +39,7 @@ public class PastQuestionsActivity extends AppCompatActivity {
 
         findViewById(R.id.btnChangeCategory).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                // TODO: make sure you’ve created ChooseCategoryActivity before enabling this
+                // TODO: make sure created ChooseCategoryActivity before enabling this
                 // startActivity(new Intent(PastQuestionsActivity.this, ChooseCategoryActivity.class));
             }
         });

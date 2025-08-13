@@ -116,8 +116,8 @@ public class UserTest {
         userDao.update(retrievedUser);
 
         //get the updated user form the database and check  if the username updated
-        retrievedUser = userDao.getUserByUserNameSynchronous(newUsername);
-        assertThat(retrievedUser.getUsername(), equalTo(newUsername));
+        User updatedUser = userDao.getUserByUserNameSynchronous(newUsername);
+        assertThat(updatedUser.getUsername(), equalTo(newUsername));
 
         //make sure the old username is gone
         assertThat(userDao.getUserByUserNameSynchronous(username), equalTo(null));

@@ -18,8 +18,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
-
 /**
  * User table tests (Insert, Update, Delete)
  *
@@ -43,12 +41,12 @@ public class UserTest {
     }
 
     @After
-    public void closeDb() throws IOException {
+    public void closeDb() {
         db.close();
     }
 
     @Test
-    public void insertUserTest() throws Exception {
+    public void insertUserTest() {
         User user = new User(username, password);
         User retrievedUser;
 
@@ -67,7 +65,7 @@ public class UserTest {
     }
 
     @Test
-    public void deleteUserTest() throws Exception {
+    public void deleteUserTest() {
         User user = new User(username, password);
         User retrievedUser;
 
@@ -93,7 +91,7 @@ public class UserTest {
     }
 
     @Test
-    public void updateUserTest() throws Exception {
+    public void updateUserTest() {
         User user = new User(username, password);
         User retrievedUser;
 

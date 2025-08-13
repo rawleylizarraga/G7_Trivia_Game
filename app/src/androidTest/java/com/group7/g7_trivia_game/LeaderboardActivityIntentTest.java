@@ -52,5 +52,4 @@ public class LeaderboardActivityIntentTest {
         intended(hasComponent(LeaderboardActivity.class.getName()));
     }
 
-
 }

@@ -1,5 +1,5 @@
 /**
- *
+ * ViewModel for managing past trivia questions in the G7 Trivia Game app.
  * @author Cristina Pizano
  * @since 7/31/2025
  */

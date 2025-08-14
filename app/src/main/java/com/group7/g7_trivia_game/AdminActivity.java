@@ -57,7 +57,8 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(intent);
         });
         binding.welcomeMenuButton.setOnClickListener(v -> {
-            finish(); // returns to previous screen
+            Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }

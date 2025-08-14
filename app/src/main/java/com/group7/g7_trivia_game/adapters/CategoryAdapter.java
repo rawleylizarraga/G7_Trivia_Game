@@ -1,6 +1,6 @@
 
 /**
- * Adapter for displaying trivia categories in a RecyclerView.
+ * Adapter for displaying trivia categories in a RecyclerView..
  * @author Cristina Pizano
  * @since 8/7/2025
  */

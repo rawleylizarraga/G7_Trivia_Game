@@ -57,5 +57,11 @@ public interface QuestionDao {
     @Query("SELECT * FROM " + TriviaDatabase.QUESTION_TABLE + " WHERE questionId IN (:ids) ORDER BY RANDOM() LIMIT 1")
     LiveData<Question> getRandomQuestionFromIds(List<Integer> ids);
 
-
+    /**
+     * Gets a question by its questions text.
+     * @param question Text of the question
+     * @return Question with the given text
+     */
+    @Query("SELECT * FROM " + TriviaDatabase.QUESTION_TABLE + " WHERE question == :question")
+    Question getQuestionByTextSynchronous(String question);
 }

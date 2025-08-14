@@ -3,11 +3,8 @@ package com.group7.g7_trivia_game;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.group7.g7_trivia_game.database.entities.Question;
@@ -79,8 +76,21 @@ public class CreateQuestionActivity extends AppCompatActivity {
         questionViewModel.insertQuestion(q);
 
         Toast.makeText(this, "Question created!", Toast.LENGTH_SHORT).show();
-        returnToMain();
+        clearForm();
 
+    }
+
+    /**
+     * Clears the form after submitting a question
+     */
+    private void clearForm(){
+        binding.createQuestionEditText.setText("");
+        binding.correctAnswerEditText.setText("");
+        binding.wrongAnswer1EditText.setText("");
+        binding.wrongAnswer2EditText.setText("");
+        binding.wrongAnswer3EditText.setText("");
+        binding.categoryEditText.setText("");
+        binding.pointsEditText.setText("");
     }
 
     /**

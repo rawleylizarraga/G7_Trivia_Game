@@ -28,7 +28,9 @@ import java.util.concurrent.Executors;
 @TypeConverters({LocalDateTypeConverter.class})
 public abstract class TriviaDatabase extends RoomDatabase {
     public abstract UserDao userDao();
+
     public abstract QuestionDao questionDao();
+
     public abstract AnsweredQuestionDao answeredQuestionDao();
 
     public static final String USER_TABLE = "user_table";
@@ -45,6 +47,7 @@ public abstract class TriviaDatabase extends RoomDatabase {
      * Creates the database the first time it is accessed using {@code sRoomDatabaseCallback}.
      * Runs asynchronously in the background using {@code ExecutorService}.
      * Use {@code LiveData<>} to access stored data.
+     *
      * @param context Application context when called from repository.
      * @return Database as a singleton TriviaDatabase.
      */
@@ -67,9 +70,9 @@ public abstract class TriviaDatabase extends RoomDatabase {
      */
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db){
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            databaseWriteExecutor.execute(()->{
+            databaseWriteExecutor.execute(() -> {
                 UserDao newUserDao = INSTANCE.userDao();
                 newUserDao.deleteAll();
                 User admin = new User("admin1", "admin1");
@@ -82,7 +85,17 @@ public abstract class TriviaDatabase extends RoomDatabase {
 
                 QuestionDao newQuestionDao = INSTANCE.questionDao();
                 //newQuestionDao.deleteAll();
-                Question math1 = new Question();
+                Question math1 = new Question(0, 10, "4", "7", "3", "0", "Math", "What is 2 + 2?");
+                newQuestionDao.insert(math1);
+                Question math2 = new Question(0, 10, "10", "3434", "32", "9", "Math", "What is 5 x 2?");
+                newQuestionDao.insert(math2);
+                Question math3 = new Question(0, 10, "36", "23", "44", "11", "Math", "What is 72 / 2?");
+                newQuestionDao.insert(math3);
+
+                Question history1 = new Question(0, 10, "2025", "1970", "1500", "2077", "History", "What year was this app made?");
+                newQuestionDao.insert(history1);
+                Question history2 = new Question(0, 10, "George Washington", "Abraham Lincoln", "Julius Caesar", "Ramesses II", "History", "Who was the first president?");
+                newQuestionDao.insert(history2);
 
             });
         }

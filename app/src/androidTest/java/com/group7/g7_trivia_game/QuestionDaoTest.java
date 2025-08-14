@@ -8,7 +8,9 @@ import androidx.test.core.app.ApplicationProvider;
 import com.group7.g7_trivia_game.database.QuestionDao;
 import com.group7.g7_trivia_game.database.TriviaDatabase;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 public class QuestionDaoTest {
     private QuestionDao questionDao;
@@ -20,5 +22,11 @@ public class QuestionDaoTest {
         db = Room.inMemoryDatabaseBuilder(context, TriviaDatabase.class).build();
         questionDao = db.questionDao();
     }
+
+    @After
+    public void closeDb() {
+        db.close();
+    }
+
 
 }

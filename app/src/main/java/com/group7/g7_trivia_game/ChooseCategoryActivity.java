@@ -1,9 +1,10 @@
 
 /**
- * Activity to choose a trivia category.
+ * Activity to choose a trivia category..
  * @author Cristina Pizano
  * @since 8/7/2025
  */
+
 package com.group7.g7_trivia_game;
 
 import android.content.Intent;

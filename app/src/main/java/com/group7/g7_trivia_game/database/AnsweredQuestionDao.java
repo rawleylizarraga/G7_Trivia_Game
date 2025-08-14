@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.group7.g7_trivia_game.database.entities.AnsweredQuestion;
 import com.group7.g7_trivia_game.database.entities.User;
@@ -26,6 +27,9 @@ public interface AnsweredQuestionDao {
 
     @Delete
     void delete(AnsweredQuestion answeredQuestion);
+
+    @Update
+    void update(AnsweredQuestion... answeredQuestions);
 
     @Query("DELETE FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE)
     void deleteAll();

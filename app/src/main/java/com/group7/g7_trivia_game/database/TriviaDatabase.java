@@ -70,14 +70,19 @@ public abstract class TriviaDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
             databaseWriteExecutor.execute(()->{
-                UserDao dao = INSTANCE.userDao();
-                dao.deleteAll();
+                UserDao newUserDao = INSTANCE.userDao();
+                newUserDao.deleteAll();
                 User admin = new User("admin1", "admin1");
                 admin.setAdmin(true);
-                dao.insert(admin);
+                newUserDao.insert(admin);
 
                 User testUser1 = new User("testuser1", "testuser1");
-                dao.insert(testUser1);
+                newUserDao.insert(testUser1);
+
+
+                QuestionDao newQuestionDao = INSTANCE.questionDao();
+                //newQuestionDao.deleteAll();
+                Question math1 = new Question();
 
             });
         }

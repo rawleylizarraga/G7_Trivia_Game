@@ -11,7 +11,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.group7.g7_trivia_game.database.AnsweredQuestionDao;
 import com.group7.g7_trivia_game.database.TriviaDatabase;
-import com.group7.g7_trivia_game.database.UserDao;
 import com.group7.g7_trivia_game.database.entities.AnsweredQuestion;
 import com.group7.g7_trivia_game.database.entities.User;
 
@@ -102,18 +101,20 @@ public class AnsweredQuestionTest {
     }
 
     @Test
-    public void updateAnsweredQuestionTest() {
+    public void updateTest() {
         AnsweredQuestion answeredQuestion = new AnsweredQuestion(answeredQuestionId, userId, questionId, dateAnswered, numberOfTries);
         answeredQuestionDao.insert(answeredQuestion);
 
         // Update the number of tries
         answeredQuestion.setNumberOfTries(1);
-        answeredQuestionDao.insert(answeredQuestion);
+        answeredQuestionDao.update(answeredQuestion);
 
         // Retrieve the updated answered question
         AnsweredQuestion retrievedAnsweredQuestion = answeredQuestionDao.getAnsweredQuestionByIdSynchronous(answeredQuestionId);
         assertThat(retrievedAnsweredQuestion.getNumberOfTries(), equalTo(1));
+
     }
+
 
 
 }

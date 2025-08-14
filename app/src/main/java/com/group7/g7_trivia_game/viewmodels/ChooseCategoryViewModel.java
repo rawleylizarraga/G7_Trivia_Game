@@ -1,6 +1,6 @@
 
 /**
- * View model for ChooseCategoryActivity.
+ * View model for ChooseCategoryActivity..
  * @author Cristina Pizano
  * @since 8/8/2025
  */

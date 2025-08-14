@@ -101,5 +101,19 @@ public class AnsweredQuestionTest {
         assertThat(retrievedAnsweredQuestion.getUserId(), equalTo(userId));
     }
 
+    @Test
+    public void updateAnsweredQuestionTest() {
+        AnsweredQuestion answeredQuestion = new AnsweredQuestion(answeredQuestionId, userId, questionId, dateAnswered, numberOfTries);
+        answeredQuestionDao.insert(answeredQuestion);
+
+        // Update the number of tries
+        answeredQuestion.setNumberOfTries(1);
+        answeredQuestionDao.insert(answeredQuestion);
+
+        // Retrieve the updated answered question
+        AnsweredQuestion retrievedAnsweredQuestion = answeredQuestionDao.getAnsweredQuestionByIdSynchronous(answeredQuestionId);
+        assertThat(retrievedAnsweredQuestion.getNumberOfTries(), equalTo(1));
+    }
+
 
 }

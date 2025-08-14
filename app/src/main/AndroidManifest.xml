@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.G7_Trivia_Game"
         tools:targetApi="31">
+
         <activity 
             android:name=".PastQuestionsActivity" 
             android:exported="false" />

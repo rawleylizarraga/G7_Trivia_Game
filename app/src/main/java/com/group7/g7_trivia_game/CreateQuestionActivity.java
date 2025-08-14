@@ -37,7 +37,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
 
         //Button listeners for returning to the main activity
         binding.createQuestionBackButton.setOnClickListener(v -> {
-            finish();
+            returnToAdminMenu();
         });
 
         binding.createQuestionSubmitButton.setOnClickListener(v -> {
@@ -96,7 +96,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
     /**
      * Returns to the main activity.
      */
-    private void returnToMain() {
-        startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), userId));
+    private void returnToAdminMenu() {
+        startActivity(IntentFactory.adminActivityIntentFactory(this));
     }
 }

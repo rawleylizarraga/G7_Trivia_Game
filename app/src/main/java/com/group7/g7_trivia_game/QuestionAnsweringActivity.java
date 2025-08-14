@@ -16,11 +16,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Displays a random question to the user and allows them to answer it.
+ *
+ * @author Marco Lara
+ * @since 8/13/2025
+ */
 
 public class QuestionAnsweringActivity extends AppCompatActivity {
 
     private QuestionViewModel questionViewModel;
     private ActivityQuestionAnsweringBinding binding;
+    private int userId;
 
     /**
      * Updates binding and viewmodel with initial data.
@@ -40,11 +47,11 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
         questionViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
 
         //Get the user id from the intent
-        int userId = getIntent().getIntExtra(MainActivity.MAIN_ACTIVITY_USER_ID, -1);
+        userId = getIntent().getIntExtra(MainActivity.MAIN_ACTIVITY_USER_ID, -1);
 
         //Button listener for back button, returning to the main activity
         binding.backButton.setOnClickListener(v -> {
-           finish();
+            returnToMainActivity();
         });
 
         //Observe the list of all question IDs
@@ -129,6 +136,10 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
         List<Integer> copy = new ArrayList<>(all);
         copy.removeAll(answered);
         return copy;
+    }
+
+    private void returnToMainActivity() {
+        startActivity(IntentFactory.mainActivityIntentFactory(this, userId));
     }
 
 }

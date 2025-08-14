@@ -1,6 +1,6 @@
 
 /**
- * Unit test for PastQuestionsViewModel.
+ * Unit test for PastQuestionsViewModel..
  * @author Cristina Pizano
  * @since 8/2/2025
  */

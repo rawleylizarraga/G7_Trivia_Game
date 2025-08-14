@@ -1,7 +1,7 @@
 
 /**
  * ChooseCategoryViewModelTest.java
- * @author Cristina Pizano
+ * @author Cristina Pizano..
  * @since 8/8/2025
  */
 package com.group7.g7_trivia_game;

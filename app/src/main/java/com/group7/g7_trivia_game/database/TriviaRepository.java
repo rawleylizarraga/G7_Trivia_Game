@@ -167,4 +167,8 @@ public class TriviaRepository {
     public LiveData<AnsweredQuestion> getAnsweredQuestionByAnsweredQuestionId(int answeredQuestionId) {
         return mAnsweredQuestionDao.getAnsweredQuestionByAnsweredQuestionId(answeredQuestionId);
     }
+
+    public LiveData<List<Integer>> getAllAnsweredQuestionKeysByUserId(int userId) {
+        return mAnsweredQuestionDao.getAllAnsweredQuestionKeysByUserId(userId);
+    }
 }

@@ -9,8 +9,11 @@ package com.group7.g7_trivia_game;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,6 +35,7 @@ public class PastQuestionsActivity extends AppCompatActivity {
     private int userId;
     private String categoryFilter = null;
     public static List<String> questionString = new ArrayList<>();
+    private ActivityResultLauncher<Intent> chooseCategoryLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +54,28 @@ public class PastQuestionsActivity extends AppCompatActivity {
         // Buttons
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
+        chooseCategoryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            categoryFilter = data.getStringExtra(ChooseCategoryActivity.EXTRA_CATEGORY);
+                            Log.d("help", "Chosen category: " + categoryFilter);
+                            questionsList();
+                            adapter.submit(questionString);
+                        }
+                    }
+                }
+        );
+
         findViewById(R.id.btnChangeCategory).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(PastQuestionsActivity.this, ChooseCategoryActivity.class));
-                startActivity(IntentFactory.chooseCategoryActivityIntentFactory(getApplicationContext()));
+                //startActivity(IntentFactory.chooseCategoryActivityIntentFactory(getApplicationContext()));
+                Intent intent = new Intent(PastQuestionsActivity.this, ChooseCategoryActivity.class);
+                chooseCategoryLauncher.launch(intent);
             }
         });
 
@@ -74,19 +95,26 @@ public class PastQuestionsActivity extends AppCompatActivity {
     public void questionsList() {
         questionString.clear();
 
-        viewModel.getAllAnsweredQuestionIdsByUserId(userId).observe(this, answeredIds -> {
+        viewModel.getAllAnsweredQuestionKeysByUserId(userId).observe(this, answeredIds -> {
             if (answeredIds != null) {
                 List<Integer> answeredIdsList = new ArrayList<>(answeredIds); // Convert to regular list
 
-                for(Integer answeredQuestionId : answeredIdsList){
+                for (Integer answeredQuestionId : answeredIdsList) {
                     viewModel.getAnsweredQuestionByAnsweredQuestionId(answeredQuestionId).observe(this, nextQuestion -> {
                         if (nextQuestion != null) {
-                            int  questionId = nextQuestion.getQuestionId();
+                            int questionId = nextQuestion.getQuestionId();
 
                             viewModel.getQuestionByQuestionId(questionId).observe(this, question -> {
                                 if (question != null) {
-                                    questionString.add(question.getQuestion());
-                                    viewModel.pastQuestions.setValue(questionString);
+                                    if (categoryFilter == null) {
+                                        questionString.add(question.getQuestion());
+                                        viewModel.pastQuestions.setValue(questionString);
+                                    } else {
+                                        if (question.getCategory().equals(categoryFilter)) {
+                                            questionString.add(question.getQuestion());
+                                            viewModel.pastQuestions.setValue(questionString);
+                                        }
+                                    }
                                 }
                             });
                         }

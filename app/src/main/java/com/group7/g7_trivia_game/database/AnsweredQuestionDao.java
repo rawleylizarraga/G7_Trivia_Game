@@ -64,4 +64,7 @@ public interface AnsweredQuestionDao {
 
     @Query("SELECT * FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE + " WHERE answeredQuestionId = :answeredQuestionId")
     LiveData<AnsweredQuestion> getAnsweredQuestionByAnsweredQuestionId(int answeredQuestionId);
+
+    @Query("SELECT answeredQuestionId FROM " + TriviaDatabase.ANSWERED_QUESTION_TABLE + " WHERE userId = :userId")
+    LiveData<List<Integer>> getAllAnsweredQuestionKeysByUserId(int userId);
 }

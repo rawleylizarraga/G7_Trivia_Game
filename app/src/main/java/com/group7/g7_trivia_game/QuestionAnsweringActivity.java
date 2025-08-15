@@ -119,6 +119,12 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
 
                             } else {
                                 binding.questionTextView.setText("No unanswered questions found.");
+
+                                // Hide buttons
+                                binding.answerOneButton.setVisibility(View.GONE);
+                                binding.answerTwoButton.setVisibility(View.GONE);
+                                binding.answerThreeButton.setVisibility(View.GONE);
+                                binding.answerFourButton.setVisibility(View.GONE);
                             }
                         });
                     }

@@ -75,5 +75,20 @@ public class IntentFactory {
         intent.putExtra(MainActivity.MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }
+
+    static Intent pastQuestionsActivityIntentFactory(Context context){
+        Intent intent = new Intent(context, PastQuestionsActivity.class);
+        return intent;
+    }
+
+    static Intent chooseCategoryActivityIntentFactory(Context context){
+        Intent intent = new Intent(context, ChooseCategoryActivity.class);
+        return intent;
+    }
+
+    static Intent createQuestionActivityIntentFactory(Context context){
+        Intent intent = new Intent(context, CreateQuestionActivity.class);
+        return intent;
+    }
 }
 

@@ -11,7 +11,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.group7.g7_trivia_game.database.AnsweredQuestionDao;
 import com.group7.g7_trivia_game.database.TriviaDatabase;
-import com.group7.g7_trivia_game.database.UserDao;
 import com.group7.g7_trivia_game.database.entities.AnsweredQuestion;
 import com.group7.g7_trivia_game.database.entities.User;
 
@@ -102,17 +101,36 @@ public class AnsweredQuestionTest {
     }
 
     @Test
-    public void updateAnsweredQuestionTest() {
-        AnsweredQuestion answeredQuestion = new AnsweredQuestion(answeredQuestionId, userId, questionId, dateAnswered, numberOfTries);
+    public void updateTest() {
+
+        AnsweredQuestion answeredQuestion = new AnsweredQuestion(
+                answeredQuestionId, userId, questionId, dateAnswered, numberOfTries
+        );
+        AnsweredQuestion retrievedAnsweredQuestion;
+
+        // Make sure the answered question doesn't exist first
+        retrievedAnsweredQuestion = answeredQuestionDao.getAnsweredQuestionByIdSynchronous(answeredQuestionId);
+        assertThat(retrievedAnsweredQuestion, equalTo(null));
+
+        // Add the answered question to the database
         answeredQuestionDao.insert(answeredQuestion);
+
+        // Get the answered question by ID
+        retrievedAnsweredQuestion = answeredQuestionDao.getAnsweredQuestionByIdSynchronous(answeredQuestionId);
+        assertThat(retrievedAnsweredQuestion.getAnsweredQuestionId(), equalTo(answeredQuestionId));
 
         // Update the number of tries
-        answeredQuestion.setNumberOfTries(1);
-        answeredQuestionDao.insert(answeredQuestion);
+        int newNumberOfTries = 3;
+        retrievedAnsweredQuestion.setNumberOfTries(newNumberOfTries);
+        answeredQuestionDao.update(retrievedAnsweredQuestion);
 
-        // Retrieve the updated answered question
-        AnsweredQuestion retrievedAnsweredQuestion = answeredQuestionDao.getAnsweredQuestionByIdSynchronous(answeredQuestionId);
-        assertThat(retrievedAnsweredQuestion.getNumberOfTries(), equalTo(1));
+        // Get the updated answered question from the database and check the new value
+        AnsweredQuestion updatedAnsweredQuestion =
+                answeredQuestionDao.getAnsweredQuestionByIdSynchronous(answeredQuestionId);
+        assertThat(updatedAnsweredQuestion.getNumberOfTries(), equalTo(newNumberOfTries));
+
+        // Ensure the change actually replaced the old value
+        assertThat(updatedAnsweredQuestion.getNumberOfTries(), equalTo(3));
     }
 
 

@@ -66,6 +66,7 @@ public class PastQuestionsActivity extends AppCompatActivity {
             adapter.submit(questions);
         });
 
+
         questionsList();
         adapter.submit(questionString);
     }
@@ -85,6 +86,7 @@ public class PastQuestionsActivity extends AppCompatActivity {
                             viewModel.getQuestionByQuestionId(questionId).observe(this, question -> {
                                 if (question != null) {
                                     questionString.add(question.getQuestion());
+                                    viewModel.pastQuestions.setValue(questionString);
                                 }
                             });
                         }
@@ -93,7 +95,5 @@ public class PastQuestionsActivity extends AppCompatActivity {
                 }
             }
         });
-
-        viewModel.pastQuestions.setValue(questionString);
     }
 }

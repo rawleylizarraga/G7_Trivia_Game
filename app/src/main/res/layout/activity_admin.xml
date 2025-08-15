@@ -40,6 +40,8 @@
         android:hint="@string/enter_category_name"
         android:inputType="textAutoComplete"
         android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/createQuestionButton"
         tools:layout_editor_absoluteX="69dp" />
 

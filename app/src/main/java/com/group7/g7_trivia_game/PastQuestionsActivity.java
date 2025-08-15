@@ -1,6 +1,7 @@
 
 /**
  * Activity to display past trivia questions.
+ *
  * @author Cristina Pizano
  * @since 8/2/2025
  */
@@ -8,25 +9,41 @@ package com.group7.g7_trivia_game;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.group7.g7_trivia_game.adapters.PastQuestionsAdapter;
+import com.group7.g7_trivia_game.database.entities.AnsweredQuestion;
+import com.group7.g7_trivia_game.database.entities.Question;
 import com.group7.g7_trivia_game.viewmodels.PastQuestionsViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PastQuestionsActivity extends AppCompatActivity {
 
     private PastQuestionsViewModel viewModel;
     private PastQuestionsAdapter adapter;
+    private int userId;
+    private String categoryFilter = null;
+    public static List<String> questionString = new ArrayList<>();
+    private ActivityResultLauncher<Intent> chooseCategoryLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_questions);
+
+        //userId = getIntent().getIntExtra(MainActivity.MAIN_ACTIVITY_USER_ID, -1);
+        userId = getIntent().getIntExtra(MainActivity.MAIN_ACTIVITY_USER_ID, -1);
 
         // RecyclerView setup
         RecyclerView rv = findViewById(R.id.rvPastQuestions);
@@ -37,11 +54,28 @@ public class PastQuestionsActivity extends AppCompatActivity {
         // Buttons
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
+        chooseCategoryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            categoryFilter = data.getStringExtra(ChooseCategoryActivity.EXTRA_CATEGORY);
+                            Log.d("help", "Chosen category: " + categoryFilter);
+                            questionsList();
+                            adapter.submit(questionString);
+                        }
+                    }
+                }
+        );
+
         findViewById(R.id.btnChangeCategory).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                // TODO: make sure created ChooseCategoryActivity before enabling this
+            @Override
+            public void onClick(View v) {
                 //startActivity(new Intent(PastQuestionsActivity.this, ChooseCategoryActivity.class));
-                startActivity(IntentFactory.chooseCategoryActivityIntentFactory(getApplicationContext()));
+                //startActivity(IntentFactory.chooseCategoryActivityIntentFactory(getApplicationContext()));
+                Intent intent = new Intent(PastQuestionsActivity.this, ChooseCategoryActivity.class);
+                chooseCategoryLauncher.launch(intent);
             }
         });
 
@@ -49,7 +83,45 @@ public class PastQuestionsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(PastQuestionsViewModel.class);
         viewModel.getPastQuestions().observe(this, questions -> {
             // Update list when data changes
+
             adapter.submit(questions);
+        });
+
+
+        questionsList();
+        adapter.submit(questionString);
+    }
+
+    public void questionsList() {
+        questionString.clear();
+
+        viewModel.getAllAnsweredQuestionKeysByUserId(userId).observe(this, answeredIds -> {
+            if (answeredIds != null) {
+                List<Integer> answeredIdsList = new ArrayList<>(answeredIds); // Convert to regular list
+
+                for (Integer answeredQuestionId : answeredIdsList) {
+                    viewModel.getAnsweredQuestionByAnsweredQuestionId(answeredQuestionId).observe(this, nextQuestion -> {
+                        if (nextQuestion != null) {
+                            int questionId = nextQuestion.getQuestionId();
+
+                            viewModel.getQuestionByQuestionId(questionId).observe(this, question -> {
+                                if (question != null) {
+                                    if (categoryFilter == null) {
+                                        questionString.add(question.getQuestion());
+                                        viewModel.pastQuestions.setValue(questionString);
+                                    } else {
+                                        if (question.getCategory().equals(categoryFilter)) {
+                                            questionString.add(question.getQuestion());
+                                            viewModel.pastQuestions.setValue(questionString);
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+
+                }
+            }
         });
     }
 }

@@ -11,6 +11,12 @@ import com.group7.g7_trivia_game.database.entities.Question;
 import com.group7.g7_trivia_game.databinding.ActivityCreateQuestionBinding;
 import com.group7.g7_trivia_game.viewmodels.QuestionViewModel;
 
+/**
+ * Activity for creating a new question.
+ * @author Marco Lara
+ * @since 8/14/2025
+ */
+
 public class CreateQuestionActivity extends AppCompatActivity {
 
     private int userId;

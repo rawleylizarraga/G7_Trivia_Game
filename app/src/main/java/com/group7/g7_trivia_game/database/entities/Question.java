@@ -1,18 +1,17 @@
 package com.group7.g7_trivia_game.database.entities;
 
-import androidx.annotation.NonNull;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.group7.g7_trivia_game.database.TriviaDatabase;
 
-import java.util.Locale;
+
 import java.util.Objects;
 
 /**
- * description
- *
- * @author
+ * Question class
+ * @author Marco Lara
  * @since 7/31/2025
  */
 

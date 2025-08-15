@@ -160,4 +160,8 @@ public class TriviaRepository {
         );
     }
 
+    // Retrieves a list of all question IDs in the table for a specific user
+    public LiveData<List<Integer>> getAllAnsweredQuestionIdsByUserId(int userId) {
+        return mAnsweredQuestionDao.getAllAnsweredQuestionIdsByUserId(userId);
+    }
 }

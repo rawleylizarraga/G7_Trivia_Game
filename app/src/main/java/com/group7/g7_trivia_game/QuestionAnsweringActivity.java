@@ -60,7 +60,7 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
                 List<Integer> allIdsList = new ArrayList<>(allIds); // Convert to regular list
 
                 //Observe the list of answered question IDs
-                questionViewModel.getAllAnsweredQuestionIds().observe(this, answeredIds -> {
+                questionViewModel.getAllAnsweredQuestionIdsByUserId(userId).observe(this, answeredIds -> {
                     if (answeredIds != null) {
                         List<Integer> answeredIdsList = new ArrayList<>(answeredIds); // Convert to regular list
 
@@ -97,13 +97,14 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
 
                                         if (selected.equals(correct)) {
                                             Toast.makeText(QuestionAnsweringActivity.this,"Yay! You answered correctly.", Toast.LENGTH_SHORT).show();
+                                            // Update user score
                                             questionViewModel.updateUserScore(userId, question.getPoints());
+
+                                            // Mark question as answered
+                                            questionViewModel.insertAnsweredQuestion(question.getQuestionId(), userId);
                                         } else {
                                             Toast.makeText(QuestionAnsweringActivity.this,"Wrong answer.", Toast.LENGTH_SHORT).show();
                                         }
-
-                                        // Mark question as answered
-                                        questionViewModel.insertAnsweredQuestion(question.getQuestionId(), userId);
 
                                         //restart the activity
                                         recreate();

@@ -72,4 +72,8 @@ public class QuestionViewModel extends AndroidViewModel {
     public void insertQuestion(Question q) {
             repository.insertQuestion(q);
     }
+
+    public LiveData<List<Integer>> getAllAnsweredQuestionIdsByUserId(int userId) {
+        return repository.getAllAnsweredQuestionIdsByUserId(userId);
+    }
 }

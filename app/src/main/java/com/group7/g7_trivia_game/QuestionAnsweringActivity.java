@@ -97,13 +97,14 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
 
                                         if (selected.equals(correct)) {
                                             Toast.makeText(QuestionAnsweringActivity.this,"Yay! You answered correctly.", Toast.LENGTH_SHORT).show();
+                                            // Update user score
                                             questionViewModel.updateUserScore(userId, question.getPoints());
+
+                                            // Mark question as answered
+                                            questionViewModel.insertAnsweredQuestion(question.getQuestionId(), userId);
                                         } else {
                                             Toast.makeText(QuestionAnsweringActivity.this,"Wrong answer.", Toast.LENGTH_SHORT).show();
                                         }
-
-                                        // Mark question as answered
-                                        questionViewModel.insertAnsweredQuestion(question.getQuestionId(), userId);
 
                                         //restart the activity
                                         recreate();

@@ -114,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.pastQuestionsButton.setOnClickListener(v -> {
-            //todo: uncomment after past questions is implemented
-            startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext()));
+            startActivity(IntentFactory.pastQuestionsActivityIntentFactory(getApplicationContext(), loggedInUserId));
         });
 
         binding.leaderboardButton.setOnClickListener(v -> {

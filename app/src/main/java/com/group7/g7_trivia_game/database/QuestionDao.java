@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.group7.g7_trivia_game.database.entities.Question;
+import com.group7.g7_trivia_game.database.entities.User;
 
 import java.util.List;
 
@@ -64,4 +65,7 @@ public interface QuestionDao {
      */
     @Query("SELECT * FROM " + TriviaDatabase.QUESTION_TABLE + " WHERE question == :question")
     Question getQuestionByTextSynchronous(String question);
+
+    @Query("SELECT * FROM " + TriviaDatabase.QUESTION_TABLE + " WHERE questionId == :questionId")
+    LiveData<Question> getQuestionByQuestionId(int questionId);
 }

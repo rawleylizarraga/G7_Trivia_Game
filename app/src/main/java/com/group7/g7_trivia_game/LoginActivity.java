@@ -65,16 +65,18 @@ public class LoginActivity extends AppCompatActivity {
         Observer<User> userObserver = new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                if (user != null && user.getPassword().equals(password)) {
-                    Log.d("help", "activity started");
-                    Toast.makeText(LoginActivity.this, "Logging in...", Toast.LENGTH_SHORT).show();
-                    startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                if (user != null) {
+                    if (user.getPassword().equals(password)) {
+                        Log.d("help", "activity started");
+                        Toast.makeText(LoginActivity.this, "Logging in...", Toast.LENGTH_SHORT).show();
+                        startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), user.getId()));
 
-                    // get me out of this god forsaken observer i've been getting multiple intents for so long
-                    userLiveData.removeObserver(this);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                    userLiveData.removeObserver(this);
+                        // get me out of this god forsaken observer i've been getting multiple intents for so long
+                        userLiveData.removeObserver(this);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                        userLiveData.removeObserver(this);
+                    }
                 }
             }
         };

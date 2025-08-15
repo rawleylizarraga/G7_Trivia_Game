@@ -47,8 +47,8 @@ public class PastQuestionsViewModel extends AndroidViewModel {
         return pastQuestions;
     }
 
-    public LiveData<List<Integer>> getAllAnsweredQuestionIdsByUserId(int userId) {
-        return repository.getAllAnsweredQuestionIdsByUserId(userId);
+    public LiveData<List<Integer>> getAllAnsweredQuestionKeysByUserId(int userId) {
+        return repository.getAllAnsweredQuestionKeysByUserId(userId);
     }
 
     public LiveData<AnsweredQuestion> getAnsweredQuestionByAnsweredQuestionId(int answeredQuestionId) {

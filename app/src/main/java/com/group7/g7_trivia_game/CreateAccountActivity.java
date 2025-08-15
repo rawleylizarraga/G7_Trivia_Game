@@ -98,9 +98,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                     createAccountViewModel.getUserByUsername(username).observe(CreateAccountActivity.this, userCheck -> {
                         if (userCheck != null) {
                             startActivity(IntentFactory.mainActivityIntentFactory(getApplicationContext(), userCheck.getId()));
-                        } else {
-                            Toast.makeText(CreateAccountActivity.this, "Failed to create account", Toast.LENGTH_SHORT).show();
-                        }
+                        } //else {
+                            //Toast.makeText(CreateAccountActivity.this, "Failed to create account", Toast.LENGTH_SHORT).show();
+                        //}
                     });
                 }
                 userLiveData.removeObserver(this);

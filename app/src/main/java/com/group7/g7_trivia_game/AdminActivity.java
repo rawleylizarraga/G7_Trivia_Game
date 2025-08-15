@@ -53,8 +53,8 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
         binding.createQuestionButton.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminActivity.this, CreateQuestionActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(AdminActivity.this, CreateQuestionActivity.class);
+            startActivity(IntentFactory.createQuestionActivityIntentFactory(getApplicationContext()));
         });
         binding.welcomeMenuButton.setOnClickListener(v -> {
             Intent intent = new Intent(AdminActivity.this, MainActivity.class);

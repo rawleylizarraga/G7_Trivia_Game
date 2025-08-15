@@ -40,7 +40,8 @@ public class PastQuestionsActivity extends AppCompatActivity {
         findViewById(R.id.btnChangeCategory).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 // TODO: make sure created ChooseCategoryActivity before enabling this
-                // startActivity(new Intent(PastQuestionsActivity.this, ChooseCategoryActivity.class));
+                //startActivity(new Intent(PastQuestionsActivity.this, ChooseCategoryActivity.class));
+                startActivity(IntentFactory.chooseCategoryActivityIntentFactory(getApplicationContext()));
             }
         });
 

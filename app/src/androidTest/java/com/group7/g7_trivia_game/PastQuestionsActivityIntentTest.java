@@ -19,14 +19,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 /**
- *  Intent tests for QuestionAnsweringActivity
- *  This test checks if clicking the back button launches the MainActivity
+ *  Intent tests for PastQuestionsActivity
  *
- * @author Marco Lara
+ * @author
  * @since 8/13/2025
  */
 @RunWith(AndroidJUnit4.class)
-public class QuestionAnsweringActivityIntentTest {
+public class PastQuestionsActivityIntentTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> activityRule =
@@ -46,9 +45,9 @@ public class QuestionAnsweringActivityIntentTest {
     }
 
     @Test
-    public void backButton_launchesQuestionAnsweringActivity(){
-        onView(withId(R.id.playTriviaButton)).perform(click());
-        intended(hasComponent(QuestionAnsweringActivity.class.getName()));
+    public void backButton_launchesPastQuestionsActivity(){
+        onView(withId(R.id.pastQuestionsButton)).perform(click());
+        intended(hasComponent(PastQuestionsActivity.class.getName()));
     }
 
 }

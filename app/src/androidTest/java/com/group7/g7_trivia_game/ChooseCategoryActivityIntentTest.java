@@ -19,20 +19,19 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 /**
- *  Intent tests for QuestionAnsweringActivity
- *  This test checks if clicking the back button launches the MainActivity
+ *  Intent tests for ChooseCategoryActivity
  *
- * @author Marco Lara
+ * @author
  * @since 8/13/2025
  */
 @RunWith(AndroidJUnit4.class)
-public class QuestionAnsweringActivityIntentTest {
+public class ChooseCategoryActivityIntentTest {
 
     @Rule
-    public ActivityScenarioRule<MainActivity> activityRule =
+    public ActivityScenarioRule<PastQuestionsActivity> activityRule =
             new ActivityScenarioRule<>(new Intent(
                     ApplicationProvider.getApplicationContext(),
-                    MainActivity.class
+                    PastQuestionsActivity.class
             ).putExtra("com.group7.g7_trivia_game.MAIN_ACTIVITY_USER_ID", 123));
 
     @Before
@@ -46,9 +45,9 @@ public class QuestionAnsweringActivityIntentTest {
     }
 
     @Test
-    public void backButton_launchesQuestionAnsweringActivity(){
-        onView(withId(R.id.playTriviaButton)).perform(click());
-        intended(hasComponent(QuestionAnsweringActivity.class.getName()));
+    public void backButton_launchesChooseCategoryActivity(){
+        onView(withId(R.id.btnChangeCategory)).perform(click());
+        intended(hasComponent(ChooseCategoryActivity.class.getName()));
     }
 
 }

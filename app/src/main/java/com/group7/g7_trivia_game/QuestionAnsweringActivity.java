@@ -60,7 +60,7 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
                 List<Integer> allIdsList = new ArrayList<>(allIds); // Convert to regular list
 
                 //Observe the list of answered question IDs
-                questionViewModel.getAllAnsweredQuestionIds().observe(this, answeredIds -> {
+                questionViewModel.getAllAnsweredQuestionIdsByUserId(userId).observe(this, answeredIds -> {
                     if (answeredIds != null) {
                         List<Integer> answeredIdsList = new ArrayList<>(answeredIds); // Convert to regular list
 

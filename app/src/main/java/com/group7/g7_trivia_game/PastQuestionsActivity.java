@@ -67,6 +67,7 @@ public class PastQuestionsActivity extends AppCompatActivity {
         });
 
         questionsList();
+        adapter.submit(questionString);
     }
 
     public void questionsList() {

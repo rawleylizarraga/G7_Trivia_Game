@@ -10,6 +10,11 @@ import com.group7.g7_trivia_game.database.entities.Question;
 
 import java.util.List;
 
+/**
+ * ViewModel for managing questions
+ * @author Marco Lara
+ * @since 8/14/2025
+ */
 public class QuestionViewModel extends AndroidViewModel {
     private final TriviaRepository repository;
 
@@ -73,6 +78,11 @@ public class QuestionViewModel extends AndroidViewModel {
             repository.insertQuestion(q);
     }
 
+    /**
+     * Gets a list of all answered question IDs by a user.
+     * @param userId User ID
+     * @return List of all answered question IDs by the user
+     */
     public LiveData<List<Integer>> getAllAnsweredQuestionIdsByUserId(int userId) {
         return repository.getAllAnsweredQuestionIdsByUserId(userId);
     }

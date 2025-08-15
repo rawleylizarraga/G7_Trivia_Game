@@ -92,11 +92,14 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
                                 View.OnClickListener buttonClickListener = new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        Button button = (Button) v;
                                         String selected = ((Button) v).getText().toString();
                                         String correct = question.getAnswerCorrect();
 
                                         if (selected.equals(correct)) {
                                             Toast.makeText(QuestionAnsweringActivity.this,"Yay! You answered correctly.", Toast.LENGTH_SHORT).show();
+                                            // Change button color
+                                            button.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
                                             // Update user score
                                             questionViewModel.updateUserScore(userId, question.getPoints());
 
@@ -104,6 +107,8 @@ public class QuestionAnsweringActivity extends AppCompatActivity {
                                             questionViewModel.insertAnsweredQuestion(question.getQuestionId(), userId);
                                         } else {
                                             Toast.makeText(QuestionAnsweringActivity.this,"Wrong answer.", Toast.LENGTH_SHORT).show();
+                                            // Change button color
+                                            button.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
                                         }
 
                                         //restart the activity

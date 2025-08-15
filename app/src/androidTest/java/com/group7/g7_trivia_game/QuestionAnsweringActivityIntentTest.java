@@ -29,11 +29,11 @@ import org.junit.runner.RunWith;
 public class QuestionAnsweringActivityIntentTest {
 
     @Rule
-    public ActivityScenarioRule<QuestionAnsweringActivity> activityRule =
+    public ActivityScenarioRule<MainActivity> activityRule =
             new ActivityScenarioRule<>(new Intent(
                     ApplicationProvider.getApplicationContext(),
-                    QuestionAnsweringActivity.class
-            ).putExtra("userId", 123));
+                    MainActivity.class
+            ).putExtra("com.group7.g7_trivia_game.MAIN_ACTIVITY_USER_ID", 123));
 
     @Before
     public void setUp() {
@@ -46,9 +46,9 @@ public class QuestionAnsweringActivityIntentTest {
     }
 
     @Test
-    public void backButton_launchesMainActivity(){
-        onView(withId(R.id.backButton)).perform(click());
-        intended(hasComponent(MainActivity.class.getName()));
+    public void backButton_launchesQuestionAnsweringActivity(){
+        onView(withId(R.id.playTriviaButton)).perform(click());
+        intended(hasComponent(QuestionAnsweringActivity.class.getName()));
     }
 
 }

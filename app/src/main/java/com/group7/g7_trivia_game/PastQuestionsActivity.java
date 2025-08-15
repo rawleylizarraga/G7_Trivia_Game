@@ -62,14 +62,15 @@ public class PastQuestionsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(PastQuestionsViewModel.class);
         viewModel.getPastQuestions().observe(this, questions -> {
             // Update list when data changes
+
             adapter.submit(questions);
         });
-
 
         questionsList();
     }
 
     public void questionsList() {
+        questionString.clear();
 
         viewModel.getAllAnsweredQuestionIdsByUserId(userId).observe(this, answeredIds -> {
             if (answeredIds != null) {
